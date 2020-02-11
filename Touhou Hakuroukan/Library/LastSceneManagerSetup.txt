@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/BootLoaderScene.unity
+- path: Assets/Scenes/SplashScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
