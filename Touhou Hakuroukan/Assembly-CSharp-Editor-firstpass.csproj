@@ -63,24 +63,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\AnimationAssetPostProcessor.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\AnimationImporter.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\AnimationImporterWindow.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\AnimationImportJob.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Aseprite\AsepriteImporter.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Config\AnimationImporterSharedConfig.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Config\AnimationImporterSharedConfigEditor.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Config\AnimationTargetObjectType.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Config\AssetTargetLocation.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Config\AssetTargetLocationType.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Config\ImportAnimatorController.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Config\PreviousImportSettings.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Config\SpriteNaming.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\IAnimationImporterPlugin.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\ImportedData\ImportedAnimation.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\ImportedData\ImportedAnimationFrame.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\ImportedData\ImportedAnimationSheet.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\PyxelEdit\PyxelEditData.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\PyxelEdit\PyxelEditImporter.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Utilities\AnimationClipUtility.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Utilities\AssetDatabaseUtility.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Utilities\JSONObject.cs" />
+    <Compile Include="Assets\Plugins\AnimationImporter\Editor\Utilities\ScriptableObjectUtility.cs" />
     <Compile Include="Assets\Plugins\DanmakU\Editor\RadiansEditor.cs" />
     <Compile Include="Assets\Plugins\DanmakU\Editor\RangeEditor.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\ASEFile.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\ASEImporter.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\ImportMenu.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\ImportSettings.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\ImportSettingsReference.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\Internal\AtlasGenerator.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\Internal\ExtSpriteAlignment.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\Internal\Lexer.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\Internal\ProjectTestInstance.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\MetaLayer\MetaLayerBoxCollider.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\MetaLayer\MetaLayerEvent.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\MetaLayer\MetaLayerPivot.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\MetaLayer\MetaLayerSub.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\MetaLayer\MetaLayerSubTarget.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\MetaLayer\MetaLayerTransform.cs" />
-    <Compile Include="Assets\Plugins\MetaSprite\Editor\MetaLayerProcessor.cs" />
+    <None Include="Assets\Plugins\AnimationImporter\Editor\PyxelEdit\Ionic.Zip.dll-readme.txt" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -113,6 +121,12 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -305,6 +319,9 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Assets/Plugins/AnimationImporter/Editor/PyxelEdit/Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

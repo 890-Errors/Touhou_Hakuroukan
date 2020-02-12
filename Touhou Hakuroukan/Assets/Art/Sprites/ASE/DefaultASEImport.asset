@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ppu: 48
   alignment: 0
-  customPivot: {x: 0, y: 0}
-  densePacked: 1
-  border: 3
-  baseName: 
-  spriteTarget: 
-  atlasOutputDirectory: 
-  clipOutputDirectory: 
-  controllerPolicy: 0
-  animControllerOutputPath: 
+  customPivot: {x: 0.5, y: 0.2}
+  densePacked: 0
+  border: 0
+  baseName: test
+  spriteTarget: _Sprite
+  atlasOutputDirectory: Assets/Art/Sprites/Player
+  clipOutputDirectory: Assets/Art/Animations/AnimationClips
+  controllerPolicy: 1
+  animControllerOutputPath: Assets/Art/Animations/Animators
