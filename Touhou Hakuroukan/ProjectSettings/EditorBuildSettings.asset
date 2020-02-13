@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartMenuScene.unity
     guid: f57a2ab8e34d97f4bb6c86fde2462e99
+  - enabled: 1
+    path: Assets/Scenes/DanmakU_Test.unity
+    guid: d801987826af2394d8d56cd6113ae463
   m_configObjects: {}

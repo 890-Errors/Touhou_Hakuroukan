@@ -67,6 +67,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.PixelPerfect.Editor">
+      <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -85,17 +88,20 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/Users/Macyrate/github/Touhou_Hakuroukan/Touhou Hakuroukan/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
