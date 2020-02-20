@@ -9,7 +9,7 @@ public class StartMenuLoader : MonoBehaviour
 
     IEnumerator AsyncLoading()
     {
-        yield return new WaitForSeconds(3);     //加载太快了，先播上3s的动画
+        yield return new WaitForSeconds(3.0f);     //加载太快了，先播上3s的动画
         operation = SceneManager.LoadSceneAsync("StartMenuScene", mode: LoadSceneMode.Single);         //加载1号scene
         while (!operation.isDone)
         {

@@ -2,11 +2,14 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 public class SceneFader : MonoBehaviour
 {
+    
     #region FIELDS
     public Image fadeOutUIImage;
     public float fadeSpeed = 0.8f;
+
     public enum FadeDirection
     {
         In, //Alpha = 1
