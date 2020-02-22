@@ -5,27 +5,36 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Collider2D bc;
     public DanmakU.DanmakuEmitter emitter;
-    public float moveSpeedHigh = 8.0f;
-    public float moveSpeedLow = 4.0f;
+    public GameObject enemy;
     public int HP;
-
-
-    private Vector2 moveDirection;
+    public float moveSpeedHigh = 12.0f;
+    public float moveSpeedLow = 6.0f;
+    public float rushSpeed = 50.0f;
+    public int rushFrames = 10;
+    public float rushCoolTime = 2.0f;
+    public float visualField = 30;
+    
+    private Vector2 moveDirection = Vector2.zero;
+    private Vector2 lastNonzeroMoveDirection = Vector2.right;
     private SpriteRenderer hitbox;
+
     private bool isLowSpeed;
+    private bool isRushing;
+    private bool isRushCooling;
 
     private void Awake()
     {
         //获取必要组件的引用
         rb = gameObject.GetComponent<Rigidbody2D>();
+        bc = gameObject.GetComponent<Collider2D>();
         emitter = gameObject.transform.GetChild(0).GetChild(0).GetComponent<DanmakU.DanmakuEmitter>();
         hitbox = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
 
         //默认不攻击、关闭判定点
         emitter.enabled = false;
         hitbox.enabled = false;
-
     }
 
     // Update is called once per frame
@@ -33,27 +42,30 @@ public class Player : MonoBehaviour
     {
 
         //移动
-        moveDirection = Vector2.zero;
         moveDirection.x = (int)Input.GetAxisRaw("Horizontal");
         moveDirection.y = (int)Input.GetAxisRaw("Vertical");
+        if (moveDirection != Vector2.zero) lastNonzeroMoveDirection = moveDirection;
+
         if (Input.GetButton("LowSpeed"))
         {
             //切慢速，显示判定点
             isLowSpeed = true;
             hitbox.enabled = true;
         }
-        else { 
+        else
+        {
             //取消慢速，不显示判定点
             isLowSpeed = false;
             hitbox.enabled = false;
         }
         if (Time.timeScale != 1) moveDirection = Vector2.zero;
-        //Debug.Log($"{moveDirection.x}, {moveDirection.y}");
-        //Debug.Log(Time.fixedDeltaTime);
 
-        //射击
+        //射击,超过一定距离即失去目标
         if (Input.GetButton("Shoot"))
         {
+            Vector3 enemyDirection = enemy.transform.position - emitter.gameObject.transform.position;
+            emitter.gameObject.transform.right = enemyDirection.magnitude <= visualField ? 
+                enemyDirection : (Vector3)(lastNonzeroMoveDirection - new Vector2(0.01f, 0.01f));       //使用魔法让forward不会因这句指向奇怪的地方
             emitter.enabled = true;
         }
         else
@@ -66,9 +78,9 @@ public class Player : MonoBehaviour
 
 
         //闪现
-        if (Input.GetButtonDown("Rush"))
+        if (Input.GetButtonDown("Rush") && !isRushCooling)
         {
-            Rush();
+            StartCoroutine("Rush");
         }
 
 
@@ -85,8 +97,6 @@ public class Player : MonoBehaviour
             Time.timeScale = 1;
             Time.fixedDeltaTime = 0.02f;
         }
-        
-
     }
 
     private void FixedUpdate()
@@ -103,10 +113,28 @@ public class Player : MonoBehaviour
                 rb.MovePosition(rb.position + moveDirection * moveSpeedLow * Time.deltaTime);
             else rb.MovePosition(rb.position + moveDirection * moveSpeedHigh * Time.deltaTime);
         }
+        CameraFollow();
     }
 
-    private void Rush()
+    IEnumerator Rush()
     {
-        
+        bc.enabled = false;
+        isRushing = true;
+        isRushCooling = true;
+        (var moveSpeedHighTemp, var moveSpeedLowTemp) = (moveSpeedHigh, moveSpeedLow);
+        (moveSpeedHigh, moveSpeedLow) = (rushSpeed, rushSpeed);
+        //这里可以插个Rush特效
+        for (int i = 0; i < rushFrames; ++i) yield return new WaitForFixedUpdate();     //保持一定帧数高速移动
+        bc.enabled = true;
+        isRushing = false;
+        (moveSpeedHigh, moveSpeedLow) = (moveSpeedHighTemp, moveSpeedLowTemp);
+        yield return new WaitForSeconds(rushCoolTime);
+        isRushCooling = false;
+    }
+
+    private void CameraFollow()
+    {
+        //待平滑
+        Camera.main.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y,-10);
     }
 }

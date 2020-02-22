@@ -500,7 +500,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.3}
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.25
 --- !u!50 &647891222
 Rigidbody2D:
   serializedVersion: 4
@@ -535,10 +535,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  bc: {fileID: 0}
   emitter: {fileID: 0}
+  enemy: {fileID: 610165500}
+  HP: 5
   moveSpeedHigh: 12
   moveSpeedLow: 6
-  HP: 0
+  rushSpeed: 50
+  rushFrames: 3
+  rushCoolTime: 2
+  visualField: 20
 --- !u!1 &659613561
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 659613561}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 610165502}
   m_RootOrder: 0
@@ -753,7 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bounds:
     Center: {x: 0, y: 0}
-    Extents: {x: 18, y: 10}
+    Extents: {x: 36, y: 20}
 --- !u!4 &981056221
 Transform:
   m_ObjectHideFlags: 0
@@ -966,7 +972,7 @@ Transform:
   m_GameObject: {fileID: 1262323732}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.3, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 647891220}
   m_RootOrder: 1
@@ -1010,7 +1016,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7294118}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1058,7 +1064,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1121,7 +1127,7 @@ MonoBehaviour:
   m_RefResolutionX: 320
   m_RefResolutionY: 240
   m_UpscaleRT: 0
-  m_PixelSnapping: 1
+  m_PixelSnapping: 0
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
@@ -1367,8 +1373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DanmakuType: {fileID: 200704779}
   Speed:
-    _min: 40
-    _max: 40
+    _min: 50
+    _max: 50
   AngularSpeed:
     _min: 0
     _max: 0
@@ -1691,6 +1697,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306704869538352193, guid: 1e68808bcd5a53347a2783518e85032a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306704869538352193, guid: 1e68808bcd5a53347a2783518e85032a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7306704869538352194, guid: 1e68808bcd5a53347a2783518e85032a,
         type: 3}
