@@ -8,10 +8,18 @@ public class MenuManager : MonoBehaviour
 {
     public float timeDelayStart = .6f;
     public GameObject MainMenu;
-    
     public Image BackGround;
+    public static MenuManager Instance;
 
-   public void StartGame()
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Destroy(gameObject);
+    }
+
+    public void StartGame()
     {
         StartCoroutine("DelayStartGame");
     }

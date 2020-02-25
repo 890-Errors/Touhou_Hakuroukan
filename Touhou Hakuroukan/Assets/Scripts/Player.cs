@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -21,7 +22,6 @@ public class Player : MonoBehaviour
     private SpriteRenderer hitbox;
 
     private bool isLowSpeed;
-    private bool isRushing;
     private bool isRushCooling;
 
     private void Awake()
@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
         //默认不攻击、关闭判定点
         emitter.enabled = false;
         hitbox.enabled = false;
+            
     }
 
     // Update is called once per frame
@@ -101,11 +102,12 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (moveDirection.x != 0 && moveDirection.y != 0)       //对角线移动，削减速度
         {
             if (isLowSpeed)
-                rb.MovePosition(rb.position + moveDirection * moveSpeedLow * Time.deltaTime * 0.707f);
-            else rb.MovePosition(rb.position + moveDirection * moveSpeedHigh * Time.deltaTime * 0.707f);
+                rb.MovePosition(rb.position + moveDirection * moveSpeedLow * Time.fixedDeltaTime * 0.707f);
+            else rb.MovePosition(rb.position + moveDirection * moveSpeedHigh * Time.fixedDeltaTime * 0.707f);
         }
         else
         {
@@ -113,28 +115,21 @@ public class Player : MonoBehaviour
                 rb.MovePosition(rb.position + moveDirection * moveSpeedLow * Time.deltaTime);
             else rb.MovePosition(rb.position + moveDirection * moveSpeedHigh * Time.deltaTime);
         }
-        CameraFollow();
     }
 
     IEnumerator Rush()
     {
         bc.enabled = false;
-        isRushing = true;
         isRushCooling = true;
         (var moveSpeedHighTemp, var moveSpeedLowTemp) = (moveSpeedHigh, moveSpeedLow);
         (moveSpeedHigh, moveSpeedLow) = (rushSpeed, rushSpeed);
+        moveDirection = lastNonzeroMoveDirection;
         //这里可以插个Rush特效
         for (int i = 0; i < rushFrames; ++i) yield return new WaitForFixedUpdate();     //保持一定帧数高速移动
         bc.enabled = true;
-        isRushing = false;
         (moveSpeedHigh, moveSpeedLow) = (moveSpeedHighTemp, moveSpeedLowTemp);
         yield return new WaitForSeconds(rushCoolTime);
         isRushCooling = false;
     }
 
-    private void CameraFollow()
-    {
-        //待平滑
-        Camera.main.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y,-10);
-    }
 }
