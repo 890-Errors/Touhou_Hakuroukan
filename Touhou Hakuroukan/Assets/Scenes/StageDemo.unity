@@ -541,7 +541,7 @@ MonoBehaviour:
   HP: 5
   moveSpeedHigh: 12
   moveSpeedLow: 6
-  rushSpeed: 50
+  rushSpeed: 100
   rushFrames: 3
   rushCoolTime: 2
   visualField: 20
