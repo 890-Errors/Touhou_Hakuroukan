@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public float visualField = 30;
     public AudioClip sePlayerDead;
     public AudioClip sePlayerShoot;
+    public TrailRenderer trailRenderer;
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 lastNonzeroMoveDirection = Vector2.right;
@@ -38,10 +39,12 @@ public class Player : MonoBehaviour
         hitbox = transform.GetChild(1).GetComponent<SpriteRenderer>();
         audioSourceShoot = GetComponents<AudioSource>()[0];
         audioSourceDead = GetComponents<AudioSource>()[1];
+        trailRenderer = GetComponent<TrailRenderer>();
 
-        //默认不攻击、关闭判定点
+        //默认不攻击、关闭判定点、无拖尾
         emitter.enabled = false;
         hitbox.enabled = false;
+        trailRenderer.emitting = false;
 
         GetComponent<DanmakU.DanmakuCollider>().OnDanmakuCollision += OnDanmakuCollision;
 
@@ -131,10 +134,12 @@ public class Player : MonoBehaviour
         (moveSpeedHigh, moveSpeedLow) = (rushSpeed, rushSpeed);
         moveDirection = lastNonzeroMoveDirection;
         //这里可以插个Rush特效
+        trailRenderer.emitting = true;
         for (int i = 0; i < rushFrames; ++i) yield return new WaitForFixedUpdate();     //保持一定帧数高速移动
         isRushing = false;
         bc.enabled = true;
         (moveSpeedHigh, moveSpeedLow) = (moveSpeedHighTemp, moveSpeedLowTemp);
+        trailRenderer.emitting = false;
         yield return new WaitForSeconds(rushCoolTime);
         isRushCooling = false;
     }
@@ -147,20 +152,24 @@ public class Player : MonoBehaviour
 
     void OnDanmakuCollision(DanmakU.DanmakuCollisionList danmakuCollisions)
     {
-        if (HP > 0)
+        for(int i = 0; i < danmakuCollisions.Count; i++)
         {
-            HP -= danmakuCollisions.Count;
-            foreach (DanmakU.DanmakuCollision danmakuCollision in danmakuCollisions)
+            if (!WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, emitter))    //先判断是否是自机的弹幕
             {
-                danmakuCollision.Danmaku.Destroy();
+                if(HP > 0)
+                {
+                    HP -= danmakuCollisions.Count;
+                    danmakuCollisions[i].Danmaku.Destroy();   
+                }
+                if (HP <= 0)
+                {
+                    transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
+                    GetComponent<DanmakU.DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
+                    enabled = false;
+                }
+                StartCoroutine("Invincible");   //中弹无敌一秒
+                break;//自机一帧只处理一个弹幕碰撞
             }
-            StartCoroutine("Invincible");   //中弹无敌一秒
-        }
-        if (HP <= 0)
-        {
-            transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
-            GetComponent<DanmakU.DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
-            enabled = false;
         }
     }
 
