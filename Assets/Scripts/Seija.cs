@@ -8,7 +8,7 @@ public class Seija : MonoBehaviour
     public int HPmax = 200;
     public int HP;
     public AudioSource audioSource;
-    public DanmakU.DanmakuEmitter danmakuEmitter;
+    public DanmakuEmitter emitter;
 
     public AudioClip damageHighHP;
     public AudioClip damageLowHP;
@@ -20,7 +20,7 @@ public class Seija : MonoBehaviour
         HP = HPmax;
         GetComponent<DanmakuCollider>().OnDanmakuCollision += OnDanmakuCollision;
         audioSource = GetComponent<AudioSource>();
-        danmakuEmitter.enabled = true;
+        //danmakuEmitter.enabled = true;
     }
 
     // Update is called once per frame
@@ -31,22 +31,25 @@ public class Seija : MonoBehaviour
 
     void OnDanmakuCollision(DanmakuCollisionList danmakuCollisions)
     {
-        if (HP >= 0)
+        for(int i = 0; i < danmakuCollisions.Count; i++)
         {
-            HP -= danmakuCollisions.Count;
-            foreach(DanmakuCollision danmakuCollision in danmakuCollisions)
+            if (!WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, emitter))
             {
-                danmakuCollision.Danmaku.Destroy();
+                if (HP >= 0)
+                {
+                    HP -= 1;
+                    danmakuCollisions[i].Danmaku.Destroy();
+                    audioSource.PlayOneShot(HP >= HPmax * .2f ? damageHighHP : damageLowHP);
+                }
+                else
+                {
+                    transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
+                    GetComponent<DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
+                    transform.GetChild(0).GetComponent<DanmakU.DanmakuEmitter>().enabled = false;
+                    audioSource.PlayOneShot(enemyDead);
+                    FindObjectOfType<Player>().visualField = 0f;    //别打了，爷躺了
+                }
             }
-            audioSource.PlayOneShot(HP >= HPmax * .2f ? damageHighHP : damageLowHP);
-        }
-        if (HP <= 0)
-        {
-            transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
-            GetComponent<DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
-            transform.GetChild(0).GetComponent<DanmakU.DanmakuEmitter>().enabled = false;
-            audioSource.PlayOneShot(enemyDead);
-            FindObjectOfType<Player>().visualField = 0f;    //别打了，爷躺了
         }
     }
 }
