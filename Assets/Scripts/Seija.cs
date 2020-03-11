@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DanmakU;
 using UnityEngine;
-using DanmakU;
 
 public class Seija : MonoBehaviour
 {
@@ -31,7 +29,7 @@ public class Seija : MonoBehaviour
 
     void OnDanmakuCollision(DanmakuCollisionList danmakuCollisions)
     {
-        for(int i = 0; i < danmakuCollisions.Count; i++)
+        for (int i = 0; i < danmakuCollisions.Count; i++)
         {
             if (!WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, emitter))
             {

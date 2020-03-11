@@ -3,73 +3,73 @@ using UnityEngine;
 
 namespace AnimationImporter
 {
-	[System.Serializable]
-	public class AssetTargetLocation
-	{
-		[SerializeField]
-		private AssetTargetLocationType _locationType;
-		public AssetTargetLocationType locationType
-		{
-			get { return _locationType; }
-			set { _locationType = value; }
-		}
+    [System.Serializable]
+    public class AssetTargetLocation
+    {
+        [SerializeField]
+        private AssetTargetLocationType _locationType;
+        public AssetTargetLocationType locationType
+        {
+            get { return _locationType; }
+            set { _locationType = value; }
+        }
 
-		[SerializeField]
-		private string _globalDirectory = "Assets";
-		public string globalDirectory
-		{
-			get { return _globalDirectory; }
-			set { _globalDirectory = value; }
-		}
-		
-		private string _subDirectoryName;
-		public string subDirectoryName
-		{
-			get {return _subDirectoryName; }
-		}
+        [SerializeField]
+        private string _globalDirectory = "Assets";
+        public string globalDirectory
+        {
+            get { return _globalDirectory; }
+            set { _globalDirectory = value; }
+        }
 
-		// ================================================================================
-		//  constructor
-		// --------------------------------------------------------------------------------
+        private string _subDirectoryName;
+        public string subDirectoryName
+        {
+            get { return _subDirectoryName; }
+        }
 
-		public AssetTargetLocation(AssetTargetLocationType type, string subFolderName) : this(type)
-		{
-			_subDirectoryName = subFolderName;
-		}
+        // ================================================================================
+        //  constructor
+        // --------------------------------------------------------------------------------
 
-		public AssetTargetLocation(AssetTargetLocationType type)
-		{
-			locationType = type;
-		}
+        public AssetTargetLocation(AssetTargetLocationType type, string subFolderName) : this(type)
+        {
+            _subDirectoryName = subFolderName;
+        }
 
-		// ================================================================================
-		//  public methods
-		// --------------------------------------------------------------------------------
+        public AssetTargetLocation(AssetTargetLocationType type)
+        {
+            locationType = type;
+        }
 
-		public string GetAndEnsureTargetDirectory(string assetDirectory)
-		{
-			string directory = GetTargetDirectory(assetDirectory);
+        // ================================================================================
+        //  public methods
+        // --------------------------------------------------------------------------------
 
-			if (!Directory.Exists(directory))
-			{
-				Directory.CreateDirectory(directory);
-			}
+        public string GetAndEnsureTargetDirectory(string assetDirectory)
+        {
+            string directory = GetTargetDirectory(assetDirectory);
 
-			return directory;
-		}
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
 
-		public string GetTargetDirectory(string assetDirectory)
-		{
-			if (locationType == AssetTargetLocationType.GlobalDirectory)
-			{
-				return globalDirectory;
-			}
-			else if (locationType == AssetTargetLocationType.SubDirectory)
-			{
-				return Path.Combine(assetDirectory, subDirectoryName);
-			}
+            return directory;
+        }
 
-			return assetDirectory;
-		}
-	}
+        public string GetTargetDirectory(string assetDirectory)
+        {
+            if (locationType == AssetTargetLocationType.GlobalDirectory)
+            {
+                return globalDirectory;
+            }
+            else if (locationType == AssetTargetLocationType.SubDirectory)
+            {
+                return Path.Combine(assetDirectory, subDirectoryName);
+            }
+
+            return assetDirectory;
+        }
+    }
 }

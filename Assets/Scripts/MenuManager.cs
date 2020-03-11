@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -34,7 +33,7 @@ public class MenuManager : MonoBehaviour
     {
         BackGround.GetComponent<Animator>().SetTrigger("bgDarker");     //背景调暗
         MainMenu.GetComponent<Animator>().SetTrigger("menuSlideOut");   //主菜单滑出
-        StartCoroutine(DelaySetActiveFalse(MainMenu,.25f));             //0.25s后关闭主菜单
+        StartCoroutine(DelaySetActiveFalse(MainMenu, .25f));             //0.25s后关闭主菜单
         Menu.SetActive(true);
         Menu.transform.GetChild(0).GetComponent<Button>().Select();     //选中子菜单第一项
     }

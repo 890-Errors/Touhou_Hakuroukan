@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 public class SceneFader : MonoBehaviour
 {
-    
+
     #region FIELDS
     public Image fadeOutUIImage;
     public float fadeSpeed = 0.8f;

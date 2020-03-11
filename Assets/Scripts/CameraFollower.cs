@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraFollower : MonoBehaviour
 {
@@ -10,8 +8,8 @@ public class CameraFollower : MonoBehaviour
     void Update()
     {
         gameObject.transform.position = new Vector3(
-            FollowingObject.transform.position.x, 
-            FollowingObject.transform.position.y, 
+            FollowingObject.transform.position.x,
+            FollowingObject.transform.position.y,
             gameObject.transform.position.z
             );
     }
