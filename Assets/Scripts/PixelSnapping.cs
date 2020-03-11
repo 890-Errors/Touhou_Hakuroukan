@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class PixelSnapping : MonoBehaviour
 {
     public TextMeshProUGUI textPixelSnapping;
     private bool isPixelSnapping = false;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -21,5 +18,6 @@ public class PixelSnapping : MonoBehaviour
     {
         isPixelSnapping = !isPixelSnapping;
         textPixelSnapping.text = "PixelSnapping  " + (isPixelSnapping ? "ON" : "OFF");
+        GameManager.instance.gameOption.isPixelSnapping = isPixelSnapping;
     }
 }
