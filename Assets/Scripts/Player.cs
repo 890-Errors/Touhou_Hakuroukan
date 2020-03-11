@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -21,10 +20,12 @@ public class Player : MonoBehaviour
     public AudioClip sePlayerDead;
     public AudioClip sePlayerShoot;
     public TrailRenderer trailRenderer;
+    public SpriteRenderer spriteRenderer;
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 lastNonzeroMoveDirection = Vector2.right;
     private SpriteRenderer hitbox;
+    private Vector3 enemyDirection;
 
     private bool isLowSpeed;
     private bool isRushing;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         audioSourceShoot = GetComponents<AudioSource>()[0];
         audioSourceDead = GetComponents<AudioSource>()[1];
         trailRenderer = GetComponent<TrailRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         //默认不攻击、关闭判定点、无拖尾
         emitter.enabled = false;
@@ -58,6 +60,12 @@ public class Player : MonoBehaviour
         moveDirection.x = (int)Input.GetAxisRaw("Horizontal");
         moveDirection.y = (int)Input.GetAxisRaw("Vertical");
         if (moveDirection != Vector2.zero) lastNonzeroMoveDirection = moveDirection;
+        enemyDirection = enemy.transform.position - emitter.gameObject.transform.position;
+        emitter.gameObject.transform.right = enemyDirection.magnitude <= visualField ?
+            enemyDirection : (Vector3)(lastNonzeroMoveDirection - new Vector2(0.01f, 0.01f));       //使用魔法让forward不会因这句指向奇怪的地方
+        //瞄准方向欧拉角Z分量绝对值>90度，则转身
+        spriteRenderer.flipX = (emitter.transform.rotation.eulerAngles.z > 90 && emitter.transform.rotation.eulerAngles.z < 270);
+
 
         if (Input.GetButton("LowSpeed"))
         {
@@ -82,9 +90,7 @@ public class Player : MonoBehaviour
                 audioSourceShoot.loop = true;
                 audioSourceShoot.Play();
             }
-            Vector3 enemyDirection = enemy.transform.position - emitter.gameObject.transform.position;
-            emitter.gameObject.transform.right = enemyDirection.magnitude <= visualField ?
-                enemyDirection : (Vector3)(lastNonzeroMoveDirection - new Vector2(0.01f, 0.01f));       //使用魔法让forward不会因这句指向奇怪的地方
+
             emitter.enabled = true;
             //audioSource.PlayOneShot(sePlayerShoot);
         }
@@ -117,7 +123,7 @@ public class Player : MonoBehaviour
         {
             Time.timeScale = 1;
             Time.fixedDeltaTime = 0.02f;
-}
+        }
     }
 
     private void FixedUpdate()
@@ -152,14 +158,14 @@ public class Player : MonoBehaviour
 
     void OnDanmakuCollision(DanmakU.DanmakuCollisionList danmakuCollisions)
     {
-        for(int i = 0; i < danmakuCollisions.Count; i++)
+        for (int i = 0; i < danmakuCollisions.Count; i++)
         {
             if (!WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, emitter))    //先判断是否是自机的弹幕
             {
-                if(HP > 0)
+                if (HP > 0)
                 {
                     HP -= danmakuCollisions.Count;
-                    danmakuCollisions[i].Danmaku.Destroy();   
+                    danmakuCollisions[i].Danmaku.Destroy();
                 }
                 if (HP <= 0)
                 {
