@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip seInvalid;
 
     //加载场景后的默认BGM
-    public AudioClip[] bgmForScene;
+    public AudioClip[] bgmForScene = new AudioClip[10];
 
     private void Awake()
     {
