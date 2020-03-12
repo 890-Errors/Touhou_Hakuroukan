@@ -365,6 +365,12 @@ MonoBehaviour:
             m_StringArgument: Cancel
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!82 &15925935 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5536485721473650927, guid: b88be7f8ea5a1b44c90015a2625b73fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 5536485721214506930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &95833759 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8020064935130499184, guid: a3aaf45c4a3e9be46814edc537d43866,
@@ -6759,6 +6765,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7383701990489432039, guid: b88be7f8ea5a1b44c90015a2625b73fd,
+        type: 3}
+      propertyPath: bgmForScene.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d3fbac2c7567ef4faa9a7c0b8e93bc3, type: 3}
+    - target: {fileID: 7383701990489432039, guid: b88be7f8ea5a1b44c90015a2625b73fd,
+        type: 3}
+      propertyPath: bgmAudioSource
+      value: 
+      objectReference: {fileID: 15925935}
     - target: {fileID: 7383701990489432059, guid: b88be7f8ea5a1b44c90015a2625b73fd,
         type: 3}
       propertyPath: m_Name
