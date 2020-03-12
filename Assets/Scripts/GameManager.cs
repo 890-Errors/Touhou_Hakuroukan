@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    //存储游戏设置
     public class GameOption
     {
         public bool isPixelSnapping;
         [Range(0, 100)] public int volumeBGM;
         [Range(0, 100)] public int volumeSE;
 
+        //默认设置
         public GameOption()
         {
             isPixelSnapping = false;
@@ -18,34 +21,36 @@ public class GameManager : MonoBehaviour
     }
 
     public static GameManager instance;
-    public GameOption gameOption;
+    public GameOption gameOption = new GameOption();
 
-    // Start is called before the first frame update
     void Awake()
     {
-        if (instance == null)   //单例模式
+        if (instance == null)       //单例模式
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
 
-        gameOption = new GameOption();
-
         DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;      //加载场景时加载游戏设置
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    //加载场景时加载游戏设置
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         if (2 <= scene.buildIndex)
         {
             //设置PixelSnapping效果
             Camera.main.GetComponent<UnityEngine.U2D.PixelPerfectCamera>().pixelSnapping = gameOption.isPixelSnapping;
+
+            //设置背景音乐和音效的音量
+            AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+            foreach (var source in audioSources)
+            {
+                if (source.tag == "BGMSource")
+                    source.volume = gameOption.volumeBGM;
+                else if (source.tag == "SESource")
+                    source.volume = gameOption.volumeSE;
+            }
         }
     }
 

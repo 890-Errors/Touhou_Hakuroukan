@@ -1,13 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public AudioSource seAudioSource;
+    public AudioSource bgmAudioSource;
+
+    //菜单音效
     public AudioClip seCancel;
     public AudioClip seSelect;
     public AudioClip seOK;
     public AudioClip seInvalid;
 
-    public AudioSource seAudioSource;
+    //加载场景后的默认BGM
+    public AudioClip[] bgmForScene;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
     public void PlaySingle(AudioClip clip)
     {
@@ -25,7 +38,7 @@ public class AudioManager : MonoBehaviour
             case "Select":
                 PlaySingle(seSelect);
                 break;
-            case "OK":
+            case "Submit":
                 PlaySingle(seOK);
                 break;
             case "Invalid":
@@ -34,6 +47,12 @@ public class AudioManager : MonoBehaviour
             default:
                 throw new System.Exception("Invalid name of sound effect.");
         }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        bgmAudioSource.clip = bgmForScene[SceneManager.GetActiveScene().buildIndex];
+        bgmAudioSource.Play();
     }
 
 
