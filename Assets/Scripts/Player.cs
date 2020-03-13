@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         if (Time.timeScale != 1) moveDirection = Vector2.zero;
 
         //射击,超过一定距离即失去目标
-        if (Input.GetButton("Shoot"))
+        if (Input.GetButton("Shoot") && Time.timeScale != 0)
         {
             if (Input.GetButtonDown("Shoot"))
             {
