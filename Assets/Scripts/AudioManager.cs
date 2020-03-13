@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip seSelect;
     public AudioClip seOK;
     public AudioClip seInvalid;
+    public AudioClip sePause;
 
     //加载场景后的默认BGM
     public AudioClip[] bgmForScene = new AudioClip[10];
@@ -44,6 +45,9 @@ public class AudioManager : MonoBehaviour
             case "Invalid":
                 PlaySingle(seInvalid);
                 break;
+            case "Pause":
+                PlaySingle(sePause);
+                break;
             default:
                 throw new System.Exception("Invalid name of sound effect.");
         }
@@ -51,7 +55,7 @@ public class AudioManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        bgmAudioSource.clip = bgmForScene[SceneManager.GetActiveScene().buildIndex];
+        bgmAudioSource.clip = bgmForScene[GameManager.instance.buildIndex];
         bgmAudioSource.Play();
     }
 
