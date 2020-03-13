@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance;
 
     //用List作为菜单选项堆栈
-    private List<GameObject> SelectedObjectInParentMenu = new List<GameObject>();
+    protected List<GameObject> SelectedObjectInParentMenu = new List<GameObject>();
 
     void Awake()
     {
@@ -36,7 +36,7 @@ public class MenuManager : MonoBehaviour
     }
 
     //进入子菜单
-    public void MenuEnter(GameObject Menu)
+    public virtual void MenuEnter(GameObject Menu)
     {
         BackGround.GetComponent<Animator>().SetTrigger("bgDarker");                             //背景调暗
         int menuStackDepth = SelectedObjectInParentMenu.Count;
@@ -50,7 +50,7 @@ public class MenuManager : MonoBehaviour
     }
 
     //退出子菜单
-    public void MenuQuit(GameObject Menu)
+    public virtual void MenuQuit(GameObject Menu)
     {
         int menuStackDepth = SelectedObjectInParentMenu.Count;
         if (menuStackDepth > 0)       //判断当前是否在子菜单中
@@ -65,15 +65,15 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public IEnumerator DelayToNextScene()
+    protected IEnumerator DelayToNextScene()
     {
-        yield return new WaitForSeconds(timeDelayStart);
+        yield return new WaitForSecondsRealtime(timeDelayStart);
         SceneManager.LoadScene(GameManager.instance.buildIndex + 1);
     }
 
-    public IEnumerator DelaySetActiveFalse(GameObject gameObject, float timeToDelay)
+    protected IEnumerator DelaySetActiveFalse(GameObject gameObject, float timeToDelay)
     {
-        yield return new WaitForSeconds(timeToDelay);
+        yield return new WaitForSecondsRealtime(timeToDelay);
         gameObject.SetActive(false);
     }
 }

@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
             Camera.main.GetComponent<UnityEngine.U2D.PixelPerfectCamera>().pixelSnapping = gameOption.isPixelSnapping;
 
             //设置背景音乐和音效的音量
-            
+
             AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
             foreach (var source in audioSources)
             {
