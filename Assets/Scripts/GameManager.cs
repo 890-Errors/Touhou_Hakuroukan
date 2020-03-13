@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public GameOption gameOption = new GameOption();
+    public int buildIndex = 0;
 
     void Awake()
     {
@@ -37,12 +38,14 @@ public class GameManager : MonoBehaviour
     //加载场景时加载游戏设置
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if (2 <= scene.buildIndex)
+        buildIndex = scene.buildIndex;      //获取当前buildIndex
+        if (2 <= buildIndex)
         {
             //设置PixelSnapping效果
             Camera.main.GetComponent<UnityEngine.U2D.PixelPerfectCamera>().pixelSnapping = gameOption.isPixelSnapping;
 
             //设置背景音乐和音效的音量
+            
             AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
             foreach (var source in audioSources)
             {
