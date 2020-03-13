@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 590156}
   m_Layer: 5
   m_Name: buttonQuit
-  m_TagString: Untagged
+  m_TagString: CancelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,17 +287,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -311,17 +300,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -354,23 +332,6 @@ MonoBehaviour:
             m_StringArgument: deselect
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!82 &15925935 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5536485721473650927, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-    type: 3}
-  m_PrefabInstance: {fileID: 5536485721214506930}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &95833759 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8020064935130499184, guid: a3aaf45c4a3e9be46814edc537d43866,
@@ -819,6 +780,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: buttonMusic2
       objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499185, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_TagString
+      value: NormalButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499196, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
@@ -831,6 +797,21 @@ PrefabInstance:
       objectReference: {fileID: 932090672}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
@@ -838,12 +819,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -853,7 +834,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -973,7 +954,7 @@ GameObject:
   - component: {fileID: 227813004}
   m_Layer: 5
   m_Name: buttonOption
-  m_TagString: Untagged
+  m_TagString: NormalButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1124,17 +1105,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Submit
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 113386635}
           m_MethodName: SetTrigger
           m_Mode: 5
@@ -1159,17 +1129,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -1202,17 +1161,6 @@ MonoBehaviour:
             m_StringArgument: deselect
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &247369192 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8020064935130499196, guid: a3aaf45c4a3e9be46814edc537d43866,
@@ -1241,7 +1189,7 @@ GameObject:
   - component: {fileID: 299991831}
   m_Layer: 5
   m_Name: buttonQuit
-  m_TagString: Untagged
+  m_TagString: CancelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1294,17 +1242,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Submit
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -1318,17 +1255,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -1359,17 +1285,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: deselect
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!95 &299991832
@@ -1486,7 +1401,7 @@ GameObject:
   - component: {fileID: 377896904}
   m_Layer: 5
   m_Name: buttonQuit
-  m_TagString: Untagged
+  m_TagString: CancelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1539,17 +1454,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -1563,17 +1467,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -1604,17 +1497,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: deselect
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!95 &377896905
@@ -1921,7 +1803,7 @@ RectTransform:
   - {fileID: 1840319398}
   - {fileID: 1702590765}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2111,7 +1993,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDelayStart: 0.6
-  pauseMenu: {fileID: 0}
   BackGround: {fileID: 521807686}
 --- !u!4 &586523887
 Transform:
@@ -2125,7 +2006,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &597371717
 PrefabInstance:
@@ -2319,6 +2200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: buttonMusic3
       objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499185, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_TagString
+      value: NormalButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499196, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
@@ -2331,6 +2217,21 @@ PrefabInstance:
       objectReference: {fileID: 394584441}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
@@ -2338,12 +2239,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2353,7 +2254,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -2473,7 +2374,7 @@ GameObject:
   - component: {fileID: 752828336}
   m_Layer: 5
   m_Name: buttonManual
-  m_TagString: Untagged
+  m_TagString: NormalButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2624,17 +2525,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Submit
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -2648,17 +2538,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -2691,17 +2570,6 @@ MonoBehaviour:
             m_StringArgument: deselect
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &846718300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,7 +2586,7 @@ GameObject:
   - component: {fileID: 846718306}
   m_Layer: 5
   m_Name: buttonMusicRoom
-  m_TagString: Untagged
+  m_TagString: NormalButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2869,17 +2737,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Submit
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -2893,17 +2750,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -2934,17 +2780,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: deselect
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &896349346
@@ -3307,6 +3142,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: buttonBGMVolume
       objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499185, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_TagString
+      value: NormalButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499196, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
@@ -3317,6 +3157,21 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
       objectReference: {fileID: 2037623820}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3331,7 +3186,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3341,7 +3196,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -3448,7 +3303,7 @@ GameObject:
   - component: {fileID: 1039714246}
   m_Layer: 5
   m_Name: buttonCredits
-  m_TagString: Untagged
+  m_TagString: NormalButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3501,17 +3356,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Submit
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -3525,17 +3369,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -3557,17 +3390,6 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 590152}
           m_MethodName: Select
           m_Mode: 1
@@ -4585,7 +4407,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1453911312
 MonoBehaviour:
@@ -4613,6 +4435,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fef1a42153a7dc4a891ca222089dd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1504321727
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 840393303056267404, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_Name
+      value: MenuAudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840393303056267411, guid: 17efbf05ce9b4fb429059de521a7cb08,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17efbf05ce9b4fb429059de521a7cb08, type: 3}
 --- !u!1 &1564797976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4629,7 +4520,7 @@ GameObject:
   - component: {fileID: 1564797978}
   m_Layer: 5
   m_Name: buttonQuit
-  m_TagString: Untagged
+  m_TagString: CancelButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4682,17 +4573,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -4706,17 +4586,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -4747,17 +4616,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: deselect
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!95 &1564797979
@@ -5228,6 +5086,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: buttonMusic1
       objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499185, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_TagString
+      value: NormalButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499196, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
@@ -5245,6 +5108,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
@@ -5252,12 +5130,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5267,7 +5145,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -5429,7 +5307,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1693801208
 GameObject:
@@ -5448,7 +5326,7 @@ GameObject:
   - component: {fileID: 1693801215}
   m_Layer: 5
   m_Name: buttonPixelSnapping
-  m_TagString: Untagged
+  m_TagString: NormalButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5501,17 +5379,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Submit
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -5525,17 +5392,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -5566,17 +5422,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: deselect
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!95 &1693801211
@@ -5813,7 +5658,7 @@ PrefabInstance:
     - target: {fileID: 4431735540036825566, guid: 1179576f7aab4b447a017a638084b7c6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4431735540036825566, guid: 1179576f7aab4b447a017a638084b7c6,
         type: 3}
@@ -6251,7 +6096,7 @@ GameObject:
   - component: {fileID: 2037623821}
   m_Layer: 5
   m_Name: buttonSEVolume
-  m_TagString: Untagged
+  m_TagString: NormalButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6327,18 +6172,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_MethodName: PlaySingle
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 8300000, guid: a4894658b2e09e643bb4a921f7291de3,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -6352,17 +6185,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: select
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Select
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 10
@@ -6393,17 +6215,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: deselect
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3075291936294488149}
-          m_MethodName: PlaySingle
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Cancel
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!95 &2037623822
@@ -6800,97 +6611,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084360864}
   m_CullTransparentMesh: 0
---- !u!114 &3075291936294488149 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7383701990489432039, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-    type: 3}
-  m_PrefabInstance: {fileID: 5536485721214506930}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dacc3770e8f2b54e9dcfb16308d0b30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &5536485721214506930
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432036, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7383701990489432039, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: bgmForScene.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 5d3fbac2c7567ef4faa9a7c0b8e93bc3, type: 3}
-    - target: {fileID: 7383701990489432039, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: bgmAudioSource
-      value: 
-      objectReference: {fileID: 15925935}
-    - target: {fileID: 7383701990489432059, guid: b88be7f8ea5a1b44c90015a2625b73fd,
-        type: 3}
-      propertyPath: m_Name
-      value: MenuAudioManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b88be7f8ea5a1b44c90015a2625b73fd, type: 3}
 --- !u!1001 &8020064935048231461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7008,6 +6728,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: buttonStartGame
       objectReference: {fileID: 0}
+    - target: {fileID: 8020064935130499185, guid: a3aaf45c4a3e9be46814edc537d43866,
+        type: 3}
+      propertyPath: m_TagString
+      value: NormalButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499196, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
@@ -7027,12 +6752,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7042,7 +6767,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3075291936294488149}
+      objectReference: {fileID: 0}
     - target: {fileID: 8020064935130499197, guid: a3aaf45c4a3e9be46814edc537d43866,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

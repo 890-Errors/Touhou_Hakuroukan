@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
     public AudioSource seAudioSource;
     public AudioSource bgmAudioSource;
 
@@ -19,8 +21,39 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)       //单例模式
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void Update()
+    {
+        if (EventSystem.current.currentSelectedGameObject.tag == "NormalButton")
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+                PlaySingle("Select");
+            if (Input.GetButtonDown("Submit"))
+                PlaySingle("Submit");
+            if (Input.GetButtonDown("Cancel"))
+                PlaySingle("Cancel");
+        }
+        if (EventSystem.current.currentSelectedGameObject.tag == "CancelButton")
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+                PlaySingle("Select");
+            if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel"))
+                PlaySingle("Cancel");
+        }
+        if (EventSystem.current.currentSelectedGameObject.tag == "NoCancelButton")
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+                PlaySingle("Select");
+            if (Input.GetButtonDown("Submit"))
+                PlaySingle("Submit");
+        }
     }
 
     public void PlaySingle(AudioClip clip)
@@ -55,9 +88,17 @@ public class AudioManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
+        //StartCoroutine("DelayPlayBGM");
+        bgmAudioSource.clip = bgmForScene[GameManager.instance.buildIndex];
+        bgmAudioSource.Play();
+
+    }
+
+    private IEnumerator DelayPlayBGM()
+    {
+        yield return new WaitForSecondsRealtime(.5f);
         bgmAudioSource.clip = bgmForScene[GameManager.instance.buildIndex];
         bgmAudioSource.Play();
     }
-
 
 }
