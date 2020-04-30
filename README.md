@@ -3,3 +3,5 @@
 A developing touhou doujin game.
 
 I will get it done before June 2020.
+
+（鸽，我疯狂地鸽）
