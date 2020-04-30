@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        if (EventSystem.current.currentSelectedGameObject.tag == "NormalButton")
+        if (EventSystem.current.currentSelectedGameObject?.tag == "NormalButton")
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
                 PlaySingle("Select");
@@ -40,14 +40,14 @@ public class AudioManager : MonoBehaviour
             if (Input.GetButtonDown("Cancel"))
                 PlaySingle("Cancel");
         }
-        if (EventSystem.current.currentSelectedGameObject.tag == "CancelButton")
+        if (EventSystem.current.currentSelectedGameObject?.tag == "CancelButton")
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
                 PlaySingle("Select");
             if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel"))
                 PlaySingle("Cancel");
         }
-        if (EventSystem.current.currentSelectedGameObject.tag == "NoCancelButton")
+        if (EventSystem.current.currentSelectedGameObject?.tag == "NoCancelButton")
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
                 PlaySingle("Select");
@@ -89,8 +89,8 @@ public class AudioManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         //StartCoroutine("DelayPlayBGM");
-        bgmAudioSource.clip = bgmForScene[GameManager.instance.buildIndex];
-        bgmAudioSource.Play();
+        instance.bgmAudioSource.clip = bgmForScene[GameManager.instance.buildIndex];
+        instance.bgmAudioSource.Play();
 
     }
 
