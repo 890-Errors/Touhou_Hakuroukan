@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public Collider2D bc;
+    public CircleCollider2D hitboxCollider;
     public DanmakU.DanmakuEmitter emitter;
     public GameObject enemy;
     public AudioSource audioSourceShoot;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     {
         //获取必要组件的引用
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<Collider2D>();
+        hitboxCollider = GetComponent<CircleCollider2D>();
         emitter = transform.GetChild(0).GetChild(0).GetComponent<DanmakU.DanmakuEmitter>();
         hitbox = transform.GetChild(1).GetComponent<SpriteRenderer>();
         audioSourceShoot = GetComponents<AudioSource>()[0];
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Rush()
     {
-        bc.enabled = false;
+        hitboxCollider.enabled = false;
         isRushCooling = true;
         isRushing = true;
         (var moveSpeedHighTemp, var moveSpeedLowTemp) = (moveSpeedHigh, moveSpeedLow);
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
         trailRenderer.emitting = true;
         for (int i = 0; i < rushFrames; ++i) yield return new WaitForFixedUpdate();     //保持一定帧数高速移动
         isRushing = false;
-        bc.enabled = true;
+        hitboxCollider.enabled = true;
         (moveSpeedHigh, moveSpeedLow) = (moveSpeedHighTemp, moveSpeedLowTemp);
         trailRenderer.emitting = false;
         yield return new WaitForSeconds(rushCoolTime);
@@ -181,10 +181,10 @@ public class Player : MonoBehaviour
 
     IEnumerator Invincible()    //无敌一秒
     {
-        bc.enabled = false;
+        hitboxCollider.enabled = false;
         audioSourceDead.PlayOneShot(sePlayerDead);
         yield return new WaitForSeconds(1.0f);
-        bc.enabled = true;
+        hitboxCollider.enabled = true;
     }
 
 }
