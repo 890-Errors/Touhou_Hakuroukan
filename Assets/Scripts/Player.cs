@@ -1,22 +1,31 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using DanmakU;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IHealthPoint
 {
-    public Rigidbody2D rb;
-    public CircleCollider2D hitboxCollider;
-    public DanmakU.DanmakuEmitter emitter;
-    public GameObject enemy;
-    public AudioSource audioSourceShoot;
-    public AudioSource audioSourceDead;
-    public int HP;
+    public int HP { get=>hp; set=>hp = value; }
+
+    public int hp = 500;
     public float moveSpeedHigh = 12.0f;
     public float moveSpeedLow = 6.0f;
     public float rushSpeed = 50.0f;
     public int rushFrames = 10;
     public float rushCoolTime = 2.0f;
     public float visualField = 30;
+
+    private bool isLowSpeed;
+    private bool isRushing;
+    private bool isRushCooling;
+
+    public Rigidbody2D rb;
+    public CircleCollider2D hitboxCollider;
+    public IHitbox hitbox;
+    public DanmakuEmitter emitter;
+    public GameObject enemy;
+    public AudioSource audioSourceShoot;
+    public AudioSource audioSourceDead;
     public AudioClip sePlayerDead;
     public AudioClip sePlayerShoot;
     public TrailRenderer trailRenderer;
@@ -24,20 +33,16 @@ public class Player : MonoBehaviour
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 lastNonzeroMoveDirection = Vector2.right;
-    private SpriteRenderer hitbox;
+    private SpriteRenderer hitboxRenderer;
     private Vector3 enemyDirection;
-
-    private bool isLowSpeed;
-    private bool isRushing;
-    private bool isRushCooling;
 
     private void Awake()
     {
         //获取必要组件的引用
         rb = GetComponent<Rigidbody2D>();
-        hitboxCollider = GetComponent<CircleCollider2D>();
-        emitter = transform.GetChild(0).GetChild(0).GetComponent<DanmakU.DanmakuEmitter>();
-        hitbox = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        emitter = transform.GetChild(0).GetChild(0).GetComponent<DanmakuEmitter>();
+        hitbox = transform.GetChild(1).GetComponent<IHitbox>();
+        hitboxRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
         audioSourceShoot = GetComponents<AudioSource>()[0];
         audioSourceDead = GetComponents<AudioSource>()[1];
         trailRenderer = GetComponent<TrailRenderer>();
@@ -45,10 +50,10 @@ public class Player : MonoBehaviour
 
         //默认不攻击、关闭判定点、无拖尾
         emitter.enabled = false;
-        hitbox.enabled = false;
+        hitboxRenderer.enabled = false;
         trailRenderer.emitting = false;
 
-        GetComponent<DanmakU.DanmakuCollider>().OnDanmakuCollision += OnDanmakuCollision;
+        //GetComponent<DanmakuCollider>().OnDanmakuCollision += OnDanmakuCollision;
 
     }
 
@@ -71,13 +76,13 @@ public class Player : MonoBehaviour
         {
             //切慢速，显示判定点
             isLowSpeed = true;
-            hitbox.enabled = true;
+            hitboxRenderer.enabled = true;
         }
         else
         {
             //取消慢速，不显示判定点
             isLowSpeed = false;
-            hitbox.enabled = false;
+            hitboxRenderer.enabled = false;
         }
         if (Time.timeScale != 1) moveDirection = Vector2.zero;
 
@@ -133,7 +138,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Rush()
     {
-        hitboxCollider.enabled = false;
+        hitbox.Collider2D.enabled = false;
         isRushCooling = true;
         isRushing = true;
         (var moveSpeedHighTemp, var moveSpeedLowTemp) = (moveSpeedHigh, moveSpeedLow);
@@ -143,7 +148,7 @@ public class Player : MonoBehaviour
         trailRenderer.emitting = true;
         for (int i = 0; i < rushFrames; ++i) yield return new WaitForFixedUpdate();     //保持一定帧数高速移动
         isRushing = false;
-        hitboxCollider.enabled = true;
+        hitbox.Collider2D.enabled = true;
         (moveSpeedHigh, moveSpeedLow) = (moveSpeedHighTemp, moveSpeedLowTemp);
         trailRenderer.emitting = false;
         yield return new WaitForSeconds(rushCoolTime);
@@ -156,35 +161,35 @@ public class Player : MonoBehaviour
             ((direction.x != 0 && direction.y != 0) ? 0.707f : 1.0f));
     }
 
-    void OnDanmakuCollision(DanmakU.DanmakuCollisionList danmakuCollisions)
-    {
-        for (int i = 0; i < danmakuCollisions.Count; i++)
-        {
-            if (!WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, emitter))    //先判断是否是自机的弹幕
-            {
-                if (HP > 0)
-                {
-                    HP -= danmakuCollisions.Count;
-                    danmakuCollisions[i].Danmaku.Destroy();
-                }
-                if (HP <= 0)
-                {
-                    transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
-                    GetComponent<DanmakU.DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
-                    enabled = false;
-                }
-                StartCoroutine("Invincible");   //中弹无敌一秒
-                break;//自机一帧只处理一个弹幕碰撞
-            }
-        }
-    }
+    //void OnDanmakuCollision(DanmakuCollisionList danmakuCollisions)
+    //{
+    //    for (int i = 0; i < danmakuCollisions.Count; i++)
+    //    {
+    //        if (!WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, emitter))    //先判断是否是自机的弹幕
+    //        {
+    //            if (HP > 0)
+    //            {
+    //                HP -= danmakuCollisions.Count;
+    //                danmakuCollisions[i].Danmaku.Destroy();
+    //            }
+    //            if (HP <= 0)
+    //            {
+    //                transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
+    //                GetComponent<DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
+    //                enabled = false;
+    //            }
+    //            StartCoroutine("Invincible");   //中弹无敌一秒
+    //            break;//自机一帧只处理一个弹幕碰撞
+    //        }
+    //    }
+    //}
 
-    IEnumerator Invincible()    //无敌一秒
-    {
-        hitboxCollider.enabled = false;
-        audioSourceDead.PlayOneShot(sePlayerDead);
-        yield return new WaitForSeconds(1.0f);
-        hitboxCollider.enabled = true;
-    }
+    //IEnumerator Invincible()    //无敌一秒
+    //{
+    //    hitboxCollider.enabled = false;
+    //    audioSourceDead.PlayOneShot(sePlayerDead);
+    //    yield return new WaitForSeconds(1.0f);
+    //    hitboxCollider.enabled = true;
+    //}
 
 }
