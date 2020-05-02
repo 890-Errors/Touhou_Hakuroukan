@@ -1,5 +1,6 @@
 ﻿using DanmakU;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Seija : MonoBehaviour
 {
@@ -7,10 +8,12 @@ public class Seija : MonoBehaviour
     public int HP;
     public AudioSource audioSource;
     public DanmakuEmitter emitter;
-
+    public Image HealthBar;
     public AudioClip damageHighHP;
     public AudioClip damageLowHP;
     public AudioClip enemyDead;
+
+    private float HealthRate { get; set; }
 
     // Start is called before the first frame update
     void Awake()
@@ -22,10 +25,11 @@ public class Seija : MonoBehaviour
     }
 
     // Update is called once per frame
-    //void Update()
-    //{
-
-    //}
+    void Update()
+    {
+        HealthRate = HP / (float)HPmax;
+        HealthBar.fillAmount = HealthRate;
+    }
 
     void OnDanmakuCollision(DanmakuCollisionList danmakuCollisions)
     {
