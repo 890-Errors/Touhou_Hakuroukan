@@ -5,6 +5,7 @@ public class CameraFollower : MonoBehaviour
 {
     public GameObject followingObject;
     public Player player;
+    public Vector3 offset = Vector3.zero;
     public float smoothRate = 0.05f;
     public float betweenRate = 0.3f;
     Vector3 destination;
@@ -35,7 +36,7 @@ public class CameraFollower : MonoBehaviour
             destination, 
             smoothRate);
         //更新摄像机位置
-        gameObject.transform.position = smoothDestination;
+        gameObject.transform.position = smoothDestination + offset;
 
     }
 }
