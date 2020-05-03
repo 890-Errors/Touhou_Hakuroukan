@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Grazer : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip seGraze;
-    public int grazeNum;
+    public int grazeCount;
     public DanmakuEmitter emitter;
+    public Image grazeSlot;
+    public int grazeLevelThreshold = 50;
+    public int grazeLevel = 0;
 
     private List<int> danmakuIdCollided;
 
@@ -22,6 +26,17 @@ public class Grazer : MonoBehaviour
         GetComponent<DanmakuCollider>().OnDanmakuCollision += Graze;    //注册碰撞事件处理（擦弹）
     }
 
+    private void Update()
+    {
+        float grazeLevelRate = grazeCount/(float)grazeLevelThreshold;
+        grazeSlot.fillAmount = grazeLevelRate;
+        if(grazeSlot.fillAmount == 1.0f)
+        {
+            grazeLevel++;
+            grazeCount = 0;
+        }
+    }
+
     //擦弹
     void Graze(DanmakuCollisionList danmakuCollisions)
     {
@@ -32,7 +47,7 @@ public class Grazer : MonoBehaviour
         foreach (var danmakuId in danmakuIdColliding.Except(danmakuIdCollided))
         {
             audioSource.PlayOneShot(seGraze);   //擦弹音效
-            grazeNum += 1;
+            grazeCount += 1;
             //TODO: 擦弹回蓝
 
         }
