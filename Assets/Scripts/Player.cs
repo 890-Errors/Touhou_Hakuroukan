@@ -29,7 +29,9 @@ public class Player : MonoBehaviour,IHealthPoint
     public AudioClip sePlayerDead;
     public AudioClip sePlayerShoot;
     public TrailRenderer trailRenderer;
-    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRendererYoumu;
+    public SpriteRenderer spriteRendererHanrei;
+    public Grazer grazer;
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 lastNonzeroMoveDirection = Vector2.right;
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour,IHealthPoint
         audioSourceShoot = GetComponents<AudioSource>()[0];
         audioSourceDead = GetComponents<AudioSource>()[1];
         trailRenderer = GetComponent<TrailRenderer>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRendererYoumu = GetComponent<SpriteRenderer>();
 
         //默认不攻击、关闭判定点、无拖尾
         emitter.enabled = false;
@@ -69,7 +71,8 @@ public class Player : MonoBehaviour,IHealthPoint
         emitter.gameObject.transform.right = enemyDirection.magnitude <= visualField ?
             enemyDirection : (Vector3)(lastNonzeroMoveDirection - new Vector2(0.01f, 0.01f));       //使用魔法让forward不会因这句指向奇怪的地方
         //瞄准方向欧拉角Z分量绝对值>90度，则转身
-        spriteRenderer.flipX = (emitter.transform.rotation.eulerAngles.z > 90 && emitter.transform.rotation.eulerAngles.z < 270);
+        spriteRendererYoumu.flipX = (emitter.transform.rotation.eulerAngles.z > 90 && emitter.transform.rotation.eulerAngles.z < 270);
+        spriteRendererHanrei.flipX = spriteRendererYoumu.flipX;
 
 
         if (Input.GetButton("LowSpeed"))
