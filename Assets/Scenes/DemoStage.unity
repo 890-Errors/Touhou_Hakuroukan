@@ -372,7 +372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &94506926
 Grid:
   m_ObjectHideFlags: 0
@@ -9705,7 +9705,7 @@ GameObject:
   - component: {fileID: 1582905675}
   - component: {fileID: 1582905674}
   m_Layer: 5
-  m_Name: Health
+  m_Name: HealthSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10307,7 +10307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u9B3C\u4EBA\u6B63\u90AA"
+  m_Text: "\u64E6\u5F39\u8BA1\u6570"
 --- !u!222 &1826601516
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10606,9 +10606,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1894295590}
   seGraze: {fileID: 8300000, guid: a9b2052dafde3e54aa31d809a096a5ef, type: 3}
-  grazeNum: 0
+  grazeCount: 0
   emitter: {fileID: 0}
-  grazeSlot: {fileID: 0}
+  grazeSlot: {fileID: 807322447}
+  grazeLevelThreshold: 50
+  grazeLevel: 0
 --- !u!1 &1898626591
 GameObject:
   m_ObjectHideFlags: 0

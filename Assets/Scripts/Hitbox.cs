@@ -9,7 +9,7 @@ public class Hitbox : MonoBehaviour, IHitbox
     public DanmakuCollider DanmakuCollider { get; set; }
     public IHealthPoint ParentController { get; set; }
 
-    public float invincibleTime = 2.0f;
+    public float invincibleTime = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +28,22 @@ public class Hitbox : MonoBehaviour, IHitbox
             //先判断是否是自机的弹幕
             if (!WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, (ParentController as Player).emitter))
             {
+                //掉残
                 if (ParentController.HP > 0)
                 {
-                    ParentController.HP -= danmakuCollisions.Count;
+                    ParentController.HP -= 1;
                 }
+                //满身疮痍！
                 if (ParentController.HP <= 0)
                 {
-                    transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
-                    GetComponent<DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
-                    enabled = false;
+                    //关闭擦弹器、判定点的渲染器、发射器
+                    GetComponent<SpriteRenderer>().enabled = false;
+                    (ParentController as Player).grazer.enabled = false;
+                    (ParentController as Player).emitter.enabled = false;
+                    //倒地
+                    (ParentController as Player).gameObject.transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
+                    DanmakuCollider.OnDanmakuCollision -= OnDanmakuCollision;                    
+                    (ParentController as Player).enabled = false;
                 }
                 StartCoroutine("Invincible");   //中弹无敌一段时间
                 break;//自机一帧只处理一个弹幕碰撞
