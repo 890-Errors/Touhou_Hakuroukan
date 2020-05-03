@@ -10,6 +10,7 @@ public class Hitbox : MonoBehaviour, IHitbox
     public IHealthPoint ParentController { get; set; }
 
     public float invincibleTime = 1.5f;
+    public LifeUIController LifeUIController;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class Hitbox : MonoBehaviour, IHitbox
                 if (ParentController.HP > 0)
                 {
                     ParentController.HP -= 1;
+                    LifeUIController.SetLifeLevel(ParentController.HP);
                 }
                 //满身疮痍！
                 if (ParentController.HP <= 0)
