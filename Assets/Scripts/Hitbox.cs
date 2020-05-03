@@ -9,6 +9,8 @@ public class Hitbox : MonoBehaviour, IHitbox
     public DanmakuCollider DanmakuCollider { get; set; }
     public IHealthPoint ParentController { get; set; }
 
+    public float invincibleTime = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,16 +38,16 @@ public class Hitbox : MonoBehaviour, IHitbox
                     GetComponent<DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
                     enabled = false;
                 }
-                StartCoroutine("Invincible");   //中弹无敌一秒
+                StartCoroutine("Invincible");   //中弹无敌一段时间
                 break;//自机一帧只处理一个弹幕碰撞
             }
         }
     }
-    IEnumerator Invincible()    //无敌一秒
+    IEnumerator Invincible()    //无敌一段时间
     {
         Collider2D.enabled = false;
         (ParentController as Player).audioSourceDead.PlayOneShot((ParentController as Player).sePlayerDead);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(invincibleTime);
         Collider2D.enabled = true;
     }
 }
