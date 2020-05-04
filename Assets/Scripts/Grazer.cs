@@ -13,6 +13,7 @@ public class Grazer : MonoBehaviour
     public Image grazeSlot;
     public int grazeLevelThreshold = 50;
     public int grazeLevel = 0;
+    public GrazeLevelUIController GrazeLevelUIController;
 
     private List<int> danmakuIdCollided;
 
@@ -30,10 +31,18 @@ public class Grazer : MonoBehaviour
     {
         float grazeLevelRate = grazeCount/(float)grazeLevelThreshold;
         grazeSlot.fillAmount = grazeLevelRate;
-        if(grazeSlot.fillAmount == 1.0f)
+        if(grazeLevelRate >= 1.0f)
         {
-            grazeLevel++;
-            grazeCount = 0;
+            if(grazeLevel <= 4)
+            {
+                grazeLevel++;
+                grazeCount = 0;
+                GrazeLevelUIController.SetGrazeLevel(grazeLevel);
+            }
+            else
+            {
+                grazeCount = grazeLevelThreshold;
+            }
         }
     }
 

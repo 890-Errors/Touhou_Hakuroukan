@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 89836955}
   - component: {fileID: 89836954}
   m_Layer: 5
-  m_Name: BossName
+  m_Name: BossNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10516,8 +10516,9 @@ GameObject:
   - component: {fileID: 1826601514}
   - component: {fileID: 1826601516}
   - component: {fileID: 1826601515}
+  - component: {fileID: 1826601517}
   m_Layer: 5
-  m_Name: GrazeLevelName
+  m_Name: GrazeLevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10539,9 +10540,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 12.5, y: 106}
-  m_SizeDelta: {x: 610, y: 224.1}
-  m_Pivot: {x: 0.49999985, y: 0.49999943}
+  m_AnchoredPosition: {x: 12.499878, y: 110.81}
+  m_SizeDelta: {x: 610, y: 243.35}
+  m_Pivot: {x: 0.49999985, y: 0.5}
 --- !u!114 &1826601515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10563,18 +10564,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ec2f2a75c9e23a9428b0a0581a7fc414, type: 3}
-    m_FontSize: 260
+    m_FontSize: 288
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u5FC3\u5F62\u610F\u9B42\u795E"
+  m_Text: 
 --- !u!222 &1826601516
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10583,6 +10584,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826601513}
   m_CullTransparentMesh: 1
+--- !u!114 &1826601517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826601513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab13d88fb6fe0f0449ef8da7f026470b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1842966656
 GameObject:
   m_ObjectHideFlags: 0
@@ -11843,10 +11856,11 @@ MonoBehaviour:
   audioSource: {fileID: 1894295590}
   seGraze: {fileID: 8300000, guid: a9b2052dafde3e54aa31d809a096a5ef, type: 3}
   grazeCount: 0
-  emitter: {fileID: 0}
+  emitter: {fileID: 1928141122}
   grazeSlot: {fileID: 807322447}
   grazeLevelThreshold: 50
   grazeLevel: 0
+  GrazeLevelUIController: {fileID: 1826601517}
 --- !u!1 &1898626591
 GameObject:
   m_ObjectHideFlags: 0
