@@ -10,6 +10,7 @@ public class GrazeLevelUIController : MonoBehaviour
     private void Awake()
     {
         grazeLevelTextContainer = GetComponent<Text>();
+        SetGrazeLevel(0);
     }
     // Start is called before the first frame update
     string[] grazeLevelsTexts = new string[]
