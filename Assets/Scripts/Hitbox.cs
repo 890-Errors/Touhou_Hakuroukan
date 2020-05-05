@@ -1,7 +1,9 @@
 ﻿using DanmakU;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
+using EZCameraShake;
 
 public class Hitbox : MonoBehaviour, IHitbox
 {
@@ -34,6 +36,8 @@ public class Hitbox : MonoBehaviour, IHitbox
                 {
                     ParentController.HP -= 1;
                     LifeUIController.SetLifeLevel(ParentController.HP);
+                    (ParentController as MonoBehaviour).GetComponent<Animator>().SetTrigger("miss");
+                    CameraShaker.Instance.ShakeOnce(10f, 4f, .2f, .2f);
                 }
                 //满身疮痍！
                 if (ParentController.HP <= 0)
