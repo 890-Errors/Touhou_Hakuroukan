@@ -1,21 +1,13 @@
-﻿using UnityEngine;
-using DanmakU;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public interface ISpellCard
+interface ISpellCard
 {
-    int Cost { get; set; }
-    int ID { get; set; }
-    string Name { get; set; }
-    string Desc { get; set; }
+    int ID { get; }
+    int Cost { get; }
+    string SpellCardName { get; }
+    string SpellCardDesc { get; }
+
     void SpellCardRelease();
-}
-
-public interface ISpellCardPlayer : ISpellCard
-{
-    Player Player { get; set; }
-}
-
-public interface ISpellCardEnemy : ISpellCard
-{
-    Player Player { get; set; }
 }

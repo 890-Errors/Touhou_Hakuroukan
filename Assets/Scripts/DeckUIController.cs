@@ -44,8 +44,8 @@ public class DeckUIController : MonoBehaviour
             {
                 Cursor.followingObject = deck[--indexSpellCardLoaded];
             }
-            SpellCardName.text = deck[indexSpellCardLoaded].GetComponent<SpellCard>()?.SpellCardName;
-            SpellCardDesc.text = deck[indexSpellCardLoaded].GetComponent<SpellCard>()?.SpellCardDesc;
+            SpellCardName.text = deck[indexSpellCardLoaded].GetComponent<ISpellCard>()?.SpellCardName;
+            SpellCardDesc.text = deck[indexSpellCardLoaded].GetComponent<ISpellCard>()?.SpellCardDesc;
         }
     }
 

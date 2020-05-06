@@ -120,7 +120,7 @@ public class Player : MonoBehaviour, IHealthPoint
         if (Input.GetButtonDown("Spellcard"))
         {
             DeckUIController.instance.deck[DeckUIController.instance.indexSpellCardLoaded]
-                .GetComponent<SpellCard>()?.SpellCardRelease();
+                .GetComponent<ISpellCard>()?.SpellCardRelease();
         }
 
 

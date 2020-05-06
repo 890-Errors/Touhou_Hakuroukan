@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 
-public class Ibukihyou : MonoBehaviour, SpellCard
+public class Ibukihyou : MonoBehaviour, ISpellCard
 {
     public int ID { get; }
     public int Cost { get; }
