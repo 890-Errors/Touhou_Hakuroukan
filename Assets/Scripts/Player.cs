@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine;
 using DanmakU;
 
-public class Player : MonoBehaviour,IHealthPoint
+public class Player : MonoBehaviour, IHealthPoint
 {
-    public int HP { get=>hp; set=>hp = value; }
+    public int HP { get => hp; set => hp = value; }
 
     public int hp = 500;
     public float moveSpeedHigh = 12.0f;
@@ -68,6 +68,12 @@ public class Player : MonoBehaviour,IHealthPoint
         moveDirection.x = (int)Input.GetAxisRaw("Horizontal");
         moveDirection.y = (int)Input.GetAxisRaw("Vertical");
         if (moveDirection != Vector2.zero) lastNonzeroMoveDirection = moveDirection;
+        if (Time.timeScale != 1)        //时间操作下禁止移动
+        {
+            moveDirection = Vector2.zero;
+            lastNonzeroMoveDirection = Vector2.zero;
+        }
+
         enemyDirection = enemy.transform.position - emitter.gameObject.transform.position;
         emitter.gameObject.transform.right = enemyDirection.magnitude <= visualField ?
             enemyDirection : (Vector3)(lastNonzeroMoveDirection - new Vector2(0.01f, 0.01f));       //使用魔法让forward不会因这句指向奇怪的地方
@@ -88,10 +94,10 @@ public class Player : MonoBehaviour,IHealthPoint
             isLowSpeed = false;
             hitboxRenderer.enabled = false;
         }
-        if (Time.timeScale != 1) moveDirection = Vector2.zero;
+
 
         //射击,超过一定距离即失去目标
-        if (Input.GetButton("Shoot") && Time.timeScale != 0)
+        if (Input.GetButton("Shoot") && Time.timeScale == 1)
         {
             if (Input.GetButtonDown("Shoot"))
             {
@@ -111,6 +117,11 @@ public class Player : MonoBehaviour,IHealthPoint
 
         //使用符卡
         //待完成
+        if (Input.GetButtonDown("Spellcard"))
+        {
+            DeckUIController.instance.deck[DeckUIController.instance.indexSpellCardLoaded]
+                .GetComponent<SpellCard>()?.SpellCardRelease();
+        }
 
 
         //闪现
@@ -124,14 +135,16 @@ public class Player : MonoBehaviour,IHealthPoint
         //时间减慢
         if (Input.GetButtonDown("Change"))
         {
-            Time.timeScale = 0.02f;
+            Time.timeScale = 0.01f;
             Time.fixedDeltaTime *= Time.timeScale;
             Debug.Log("time stop.");
+            DeckUIController.instance.ToggleDeck();
         }
         if (Input.GetButtonUp("Change"))
         {
             Time.timeScale = 1;
             Time.fixedDeltaTime = 0.02f;
+            DeckUIController.instance.ToggleDeck();
         }
     }
 
