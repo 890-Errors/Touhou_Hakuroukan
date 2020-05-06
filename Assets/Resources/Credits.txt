@@ -1,13 +1,20 @@
 <b>Credits
 
-程序&美工
-Macyrate
-
+程序&美术	
+								
 音乐
 上海アリス幻樂団    凋叶棕
 
 立绘
-dairi    kaoru
+kaoru    dairi
 
 字体
-汉仪字库</b>
+汉仪字库    方正字库
+
+特别致谢
+鸢一雨音
+JuShen
+StarValley
+...
+and YOU!
+</b>
