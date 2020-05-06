@@ -51,12 +51,12 @@ public class Hitbox : MonoBehaviour, IHitbox
                     DanmakuCollider.OnDanmakuCollision -= OnDanmakuCollision;                    
                     (ParentController as Player).enabled = false;
                 }
-                StartCoroutine("Invincible");   //中弹无敌一段时间
+                StartCoroutine("InvincibleMiss");   //中弹无敌一段时间
                 break;//自机一帧只处理一个弹幕碰撞
             }
         }
     }
-    IEnumerator Invincible()    //无敌一段时间
+    IEnumerator InvincibleMiss()    //无敌一段时间
     {
         Collider2D.enabled = false;
         (ParentController as Player).audioSourceDead.PlayOneShot((ParentController as Player).sePlayerDead);
