@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -12,12 +13,15 @@ namespace DanmakU
     internal class DanmakuRenderer : IDisposable
     {
 
-        const int kBatchSize = 4096;
+        //const int kBatchSize = 4096;
+        const int kBatchSize = 1024;
 
         static Vector4[] colorCache = new Vector4[kBatchSize];
         static Vector2[] positionCache = new Vector2[kBatchSize];
         static float[] rotationCache = new float[kBatchSize];
         static uint[] args = new uint[] { 0, 0, 0, 0, 0 };
+
+        static List<Matrix4x4> matrixList = new List<Matrix4x4>();
 
         static int positionPropertyId = Shader.PropertyToID("positionBuffer");
         static int rotationPropertyId = Shader.PropertyToID("rotationBuffer");
@@ -73,10 +77,12 @@ namespace DanmakU
         {
             StructuredBuffers.Flush();
             ArgBuffers.Flush();
+            matrixList.Clear();
         }
 
         public unsafe void Render(List<DanmakuSet> sets, int layer)
         {
+            
             var mesh = Mesh;
             int batchIndex = 0;
 
@@ -86,13 +92,28 @@ namespace DanmakU
                 if (pool == null || pool.ActiveCount <= 0) return;
 
                 var srcPositions = (Vector2*)pool.Positions.GetUnsafeReadOnlyPtr();
+                var positions = pool.Positions.ToList();
                 var srcRotations = (float*)pool.Rotations.GetUnsafeReadOnlyPtr();
+                var rotationsList = pool.Rotations.ToList();
                 var srcColors = (Color*)pool.Colors.GetUnsafeReadOnlyPtr();
 
                 int poolIndex = 0;
                 while (poolIndex < pool.ActiveCount)
                 {
                     var count = Math.Min(kBatchSize - batchIndex, pool.ActiveCount - poolIndex);
+
+                    //Õë¶Ôwebgl
+                    for(int i = 0; i < count; i++)
+                    {
+                        matrixList.Add(Matrix4x4
+                            .TRS(
+                                positions[i], 
+                                Quaternion.Euler(0f, 0f,rotationsList[i] * Mathf.Rad2Deg), 
+                                Vector3.one
+                                )
+                            );
+                    }
+
                     fixed (Vector2* colors = positionCache)
                     {
                         UnsafeUtility.MemCpy(colors + batchIndex, srcPositions + poolIndex, sizeof(Vector2) * count);
@@ -105,6 +126,7 @@ namespace DanmakU
                     {
                         UnsafeUtility.MemCpy(colors + batchIndex, srcColors + poolIndex, sizeof(Vector4) * count);
                     }
+
                     batchIndex += count;
                     poolIndex += count;
                     batchIndex %= kBatchSize;
@@ -133,15 +155,24 @@ namespace DanmakU
             args[1] = (uint)batchSize;
             argsBuffer.SetData(args);
 
-            Graphics.DrawMeshInstancedIndirect(mesh, 0, renderMaterial,
-              bounds: new Bounds(Vector3.zero, Vector3.one * 1000f),
-              bufferWithArgs: argsBuffer,
-              argsOffset: 0,
-              properties: propertyBlock,
-              castShadows: ShadowCastingMode.Off,
-              receiveShadows: false,
-              layer: layer,
-              camera: null);
+            //Graphics.DrawMeshInstancedIndirect(mesh, 0, renderMaterial,
+            //  bounds: new Bounds(Vector3.zero, Vector3.one * 1000f),
+            //  bufferWithArgs: argsBuffer,
+            //  argsOffset: 0,
+            //  properties: propertyBlock,
+            //  castShadows: ShadowCastingMode.Off,
+            //  receiveShadows: false,
+            //  layer: layer,
+            //  camera: null);
+
+            Matrix4x4[] matrices = matrixList.ToArray();
+
+            Graphics.DrawMeshInstanced(mesh, 0, renderMaterial,
+                matrices,
+                matrices.Length,
+                properties: propertyBlock,
+                castShadows: ShadowCastingMode.Off,
+                receiveShadows: false);
         }
 
     }
