@@ -29,6 +29,14 @@ public class Seija : MonoBehaviour
     {
         HealthRate = HP / (float)HPmax;
         HealthBar.fillAmount = HealthRate;
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            emitter.FireRate *= 50;
+        }
+        if (Input.GetKeyUp(KeyCode.B))
+        {
+            emitter.FireRate /= 50;
+        }
     }
 
     void OnDanmakuCollision(DanmakuCollisionList danmakuCollisions)
