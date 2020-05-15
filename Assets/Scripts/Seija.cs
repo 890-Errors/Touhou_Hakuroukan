@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Seija : MonoBehaviour
+public class Seija : MonoBehaviour, IHealthPoint
 {
     public int HPmax = 200;
-    public int HP;
+    public int HP { get; set; }
     public AudioSource audioSource;
     public DanmakuEmitter emitter;
     public Image HealthBar;

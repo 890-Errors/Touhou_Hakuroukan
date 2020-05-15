@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -96,8 +96,10 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingSettings: {fileID: 4890085278179872738, guid: c10702b52a2395246830a02dca8d8b62,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -117,6 +119,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -193,6 +197,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -468,6 +473,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -654,7 +660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
       propertyPath: NoiseModule.separateAxes
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
       propertyPath: CollisionModule.enabled
@@ -678,11 +684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
       propertyPath: NoiseModule.strength.scalar
-      value: 3.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
       propertyPath: NoiseModule.frequency
-      value: 0.44
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
       propertyPath: NoiseModule.strength.minScalar
@@ -690,7 +696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
       propertyPath: NoiseModule.scrollSpeed.scalar
-      value: 1.01
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
       propertyPath: ExternalForcesModule.enabled
@@ -880,6 +886,50 @@ PrefabInstance:
     - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key1.a
       value: 0.92156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: ForceModule.z.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: VelocityModule.y.minScalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: VelocityModule.x.minScalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: VelocityModule.x.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: VelocityModule.z.minScalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: VelocityModule.z.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: ShapeModule.alignToDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: NoiseModule.strengthY.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: e60598c057f95f74b8857d50009c7967, type: 3}
       propertyPath: m_MaxParticleSize

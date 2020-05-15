@@ -155,24 +155,24 @@ namespace DanmakU
             args[1] = (uint)batchSize;
             argsBuffer.SetData(args);
 
-            //Graphics.DrawMeshInstancedIndirect(mesh, 0, renderMaterial,
-            //  bounds: new Bounds(Vector3.zero, Vector3.one * 1000f),
-            //  bufferWithArgs: argsBuffer,
-            //  argsOffset: 0,
-            //  properties: propertyBlock,
-            //  castShadows: ShadowCastingMode.Off,
-            //  receiveShadows: false,
-            //  layer: layer,
-            //  camera: null);
+            Graphics.DrawMeshInstancedIndirect(mesh, 0, renderMaterial,
+              bounds: new Bounds(Vector3.zero, Vector3.one * 1000f),
+              bufferWithArgs: argsBuffer,
+              argsOffset: 0,
+              properties: propertyBlock,
+              castShadows: ShadowCastingMode.Off,
+              receiveShadows: false,
+              layer: layer,
+              camera: null);
 
-            Matrix4x4[] matrices = matrixList.ToArray();
+            //Matrix4x4[] matrices = matrixList.ToArray();
 
-            Graphics.DrawMeshInstanced(mesh, 0, renderMaterial,
-                matrices,
-                matrices.Length,
-                properties: propertyBlock,
-                castShadows: ShadowCastingMode.Off,
-                receiveShadows: false);
+            //Graphics.DrawMeshInstanced(mesh, 0, renderMaterial,
+            //    matrices,
+            //    matrices.Length,
+            //    properties: propertyBlock,
+            //    castShadows: ShadowCastingMode.Off,
+            //    receiveShadows: false);
         }
 
     }

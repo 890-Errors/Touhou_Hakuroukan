@@ -135,7 +135,7 @@ public class Player : MonoBehaviour, IHealthPoint
         //时间减慢
         if (Input.GetButtonDown("Change"))
         {
-            Time.timeScale = 0.01f;
+            Time.timeScale = 0.1f;
             Time.fixedDeltaTime *= Time.timeScale;
             Debug.Log("time stop.");
             DeckUIController.instance.ToggleDeck();
