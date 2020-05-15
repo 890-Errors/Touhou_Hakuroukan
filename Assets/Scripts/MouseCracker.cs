@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseFucker : MonoBehaviour
+public class MouseCracker : MonoBehaviour
 {
     GameObject lastselect;
     void Start()
