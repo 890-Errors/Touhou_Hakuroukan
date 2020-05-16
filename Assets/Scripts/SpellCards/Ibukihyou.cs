@@ -12,7 +12,6 @@ public class Ibukihyou : MonoBehaviour, ISpellCard
 
     public Player Player;
     public LifeUIController LifeUIController;
-    public Grazer Grazer;
 
     public Ibukihyou()
     {
@@ -24,12 +23,14 @@ public class Ibukihyou : MonoBehaviour, ISpellCard
             "使用后，回复一点残机。";
     }
 
+    //TODO: 可以用特性重写
     public void SpellCardRelease()
     {
-        if (Grazer.grazeLevel >= Cost)
+        Grazer grazer = Player.grazer;
+        if (grazer.grazeLevel >= Cost)
         {
-            Grazer.grazeLevel -= Cost;
-            Grazer.GrazeLevelUIController.SetGrazeLevel(Grazer.grazeLevel);
+            grazer.grazeLevel -= Cost;
+            grazer.GrazeLevelUIController.SetGrazeLevel(grazer.grazeLevel);
             LifeUIController.SetLifeLevel(++Player.HP);
         }
         else

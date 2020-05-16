@@ -2971,6 +2971,7 @@ GameObject:
   - component: {fileID: 659613568}
   - component: {fileID: 659613567}
   - component: {fileID: 659613569}
+  - component: {fileID: 659613570}
   m_Layer: 0
   m_Name: seija
   m_TagString: Untagged
@@ -3074,7 +3075,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3132,6 +3133,7 @@ MonoBehaviour:
   damageHighHP: {fileID: 8300000, guid: fe6ea1bd69bdf0c4eaa3aa9f6b796fdf, type: 3}
   damageLowHP: {fileID: 8300000, guid: 4994c65cb28128a47a8a4bdb44289497, type: 3}
   enemyDead: {fileID: 8300000, guid: bb7a5db9fe5e56f428870af88a43a9e9, type: 3}
+  Player: {fileID: 647891223}
 --- !u!82 &659613569
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3228,6 +3230,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &659613570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659613561}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bca9fce656dc3f48824af12262f712d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 647891217}
+  rb: {fileID: 0}
+  followTarget: 1
+  obstacleAvoidance: 1
+  speed: 5
+  stoppingDistance: 5
+  destroyOnCollision: 0
+  colisionDelay: 3
+  destroyAfterDelay: 0
+  delay: 3
+  stopOnCollision: 1
+  orbit: 0
+  rotate: 0
+  rotationSpeed: 1
+  fireTrue: 1
+  is3D: 0
 --- !u!1 &802724703
 GameObject:
   m_ObjectHideFlags: 0
@@ -3897,7 +3927,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 647891223}
   LifeUIController: {fileID: 1875885747}
-  Grazer: {fileID: 1894295591}
 --- !u!1 &1150039200
 GameObject:
   m_ObjectHideFlags: 0
@@ -10580,6 +10609,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582905672}
   m_CullTransparentMesh: 0
+--- !u!1 &1598933372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1598933374}
+  - component: {fileID: 1598933373}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1598933373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598933372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3290ed70691cf9d4da02be823b547cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDebug: 0
+--- !u!4 &1598933374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598933372}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.14265308, y: 0.6591678, z: -26.27957}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1602988230
 GameObject:
   m_ObjectHideFlags: 0
@@ -13111,7 +13184,7 @@ PrefabInstance:
     - target: {fileID: 7545441494172340187, guid: 1c604a32fb088344ea7f0a7c4a278083,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7545441494172340188, guid: 1c604a32fb088344ea7f0a7c4a278083,
         type: 3}
@@ -13674,12 +13747,12 @@ PrefabInstance:
     - target: {fileID: 1924918615750809582, guid: 6f033076d0320b94e8fc8805635858cf,
         type: 3}
       propertyPath: Arc.Radius._min
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1924918615750809582, guid: 6f033076d0320b94e8fc8805635858cf,
         type: 3}
       propertyPath: Arc.Radius._max
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1924918615750809582, guid: 6f033076d0320b94e8fc8805635858cf,
         type: 3}

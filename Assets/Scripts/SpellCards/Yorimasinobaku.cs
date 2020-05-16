@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class Yorimasinobaku : MonoBehaviour, ISpellCard
 {
@@ -26,16 +27,18 @@ public class Yorimasinobaku : MonoBehaviour, ISpellCard
 
     public void SpellCardRelease()
     {
-        Player.emitter.transform.parent.GetComponent<CameraFollower>().followingObject = Player.enemy.gameObject;
-        new WaitForSeconds(followingTime);
-        Player.emitter.transform.parent.GetComponent<CameraFollower>().followingObject = Player.gameObject;
-        //StartCoroutine("Release");
-    }
-
-    public IEnumerator Release()
-    {
-        Player.GetComponent<CameraFollower>().followingObject = Player.enemy.gameObject;
-        yield return new WaitForSeconds(followingTime);
-        Player.GetComponent<CameraFollower>().followingObject = Player.gameObject;
+        var follower = Player.emitter.transform.parent.GetComponent<CameraFollower>();
+        var grazer = Player.grazer;
+        if (follower.followingObject != Player.gameObject || grazer.grazeLevel < Cost)     //半灵已经放出去了，或者擦弹等级不足
+        {
+            CameraShaker.Instance.ShakeOnce(10f, 4f, .2f, .2f);
+        }
+        else
+        {
+            grazer.grazeLevel -= Cost;
+            AudioManager.instance.PlaySingle(AudioManager.instance.seOK);
+            Player.emitter.transform.parent
+            .GetComponent<CameraFollower>().FollowEnemy(followingTime);
+        }
     }
 }

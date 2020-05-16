@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
-public class Meishinjikouzan : MonoBehaviour,ISpellCard
+public class Meishinjikouzan : MonoBehaviour, ISpellCard
 {
     public int ID { get; }
     public int Cost { get; }
@@ -23,6 +24,15 @@ public class Meishinjikouzan : MonoBehaviour,ISpellCard
 
     public void SpellCardRelease()
     {
-        Player.enemy.GetComponent<IHealthPoint>().HP -= 100;
+        var grazer = Player.grazer;
+        if (grazer.grazeLevel <= Cost)
+        {
+            CameraShaker.Instance.ShakeOnce(10f, 4f, .2f, .2f);
+        }
+        else
+        {
+            grazer.grazeLevel -= Cost;
+            Player.enemy.GetComponent<IHealthPoint>().HP -= 100;
+        }
     }
 }

@@ -37,13 +37,13 @@ public class Grazer : MonoBehaviour
             {
                 grazeLevel++;
                 grazeCount = 0;
-                GrazeLevelUIController.SetGrazeLevel(grazeLevel);
             }
             else
             {
                 grazeCount = grazeLevelThreshold;
             }
         }
+        GrazeLevelUIController.SetGrazeLevel(grazeLevel);   //更新UI
     }
 
     //擦弹

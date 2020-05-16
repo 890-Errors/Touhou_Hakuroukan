@@ -12,6 +12,7 @@ public class Seija : MonoBehaviour, IHealthPoint
     public AudioClip damageHighHP;
     public AudioClip damageLowHP;
     public AudioClip enemyDead;
+    public Player Player;
 
     private float HealthRate { get; set; }
 
@@ -27,8 +28,13 @@ public class Seija : MonoBehaviour, IHealthPoint
     // Update is called once per frame
     void Update()
     {
+        transform.rotation = Quaternion.identity;
         HealthRate = HP / (float)HPmax;
         HealthBar.fillAmount = HealthRate;
+
+        if (HP <= 0) Die();
+
+        //以下为运行时测试使用
         if (Input.GetKeyDown(KeyCode.B))
         {
             emitter.FireRate *= 50;
@@ -37,13 +43,18 @@ public class Seija : MonoBehaviour, IHealthPoint
         {
             emitter.FireRate /= 50;
         }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            HP = HPmax;
+            Player.HP = 6;
+        }
     }
 
     void OnDanmakuCollision(DanmakuCollisionList danmakuCollisions)
     {
         for (int i = 0; i < danmakuCollisions.Count; i++)
         {
-            if (!WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, emitter))
+            if (WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, Player.emitter))
             {
                 if (HP >= 0)
                 {
@@ -53,13 +64,19 @@ public class Seija : MonoBehaviour, IHealthPoint
                 }
                 else
                 {
-                    transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
-                    GetComponent<DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
-                    transform.GetChild(0).GetComponent<DanmakU.DanmakuEmitter>().enabled = false;
-                    audioSource.PlayOneShot(enemyDead);
-                    FindObjectOfType<Player>().visualField = 0f;    //别打了，爷躺了
+                    Die();
                 }
             }
         }
+    }
+
+    void Die()
+    {
+        transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
+        GetComponent<DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
+        transform.GetChild(0).GetComponent<DanmakuEmitter>().enabled = false;
+        audioSource.PlayOneShot(enemyDead);
+        FindObjectOfType<Player>().visualField = 0f;    //别打了，爷躺了
+        this.enabled = false;
     }
 }
