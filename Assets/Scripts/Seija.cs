@@ -28,7 +28,6 @@ public class Seija : MonoBehaviour, IHealthPoint
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.identity;
         HealthRate = HP / (float)HPmax;
         HealthBar.fillAmount = HealthRate;
 
@@ -77,6 +76,7 @@ public class Seija : MonoBehaviour, IHealthPoint
         transform.GetChild(0).GetComponent<DanmakuEmitter>().enabled = false;
         audioSource.PlayOneShot(enemyDead);
         FindObjectOfType<Player>().visualField = 0f;    //别打了，爷躺了
+        GetComponent<SeijaAI>().enabled = false;
         this.enabled = false;
     }
 }

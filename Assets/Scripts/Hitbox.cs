@@ -29,6 +29,8 @@ public class Hitbox : MonoBehaviour, IHitbox
             //先判断是否是自机的弹幕
             if (!WhoseDanmaku.IsMyDanmaku(danmakuCollisions[i].Danmaku, (ParentController as Player).emitter))
             {
+                //子弹消失
+                danmakuCollisions[i].Danmaku.Destroy();
                 //掉残
                 if (ParentController.HP > 0)
                 {
