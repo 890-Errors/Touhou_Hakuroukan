@@ -38,7 +38,7 @@ public class Yorimasinobaku : MonoBehaviour, ISpellCard
             grazer.grazeLevel -= Cost;
             AudioManager.instance.PlaySingle(AudioManager.instance.seOK);
             Player.emitter.transform.parent
-            .GetComponent<CameraFollower>().FollowEnemy(followingTime);
+            .GetComponent<CameraFollower>().FollowSomething(Player.enemy, followingTime);
         }
     }
 }
