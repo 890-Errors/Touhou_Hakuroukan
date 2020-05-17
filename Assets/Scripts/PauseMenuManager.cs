@@ -53,7 +53,8 @@ public class PauseMenuManager : MenuManager
     //进入子菜单
     public override void MenuEnter(GameObject Menu)
     {
-        int menuStackDepth = SelectedObjectInParentMenu.Count;
+        if (isSwitching) return;
+        menuStackDepth = SelectedObjectInParentMenu.Count;
         SelectedObjectInParentMenu.Add(EventSystem.current.currentSelectedGameObject);          //上级菜单当前选项入栈
         menuStackDepth++;
         var HigherMenu = SelectedObjectInParentMenu[menuStackDepth - 1].transform.parent.gameObject;
@@ -66,7 +67,8 @@ public class PauseMenuManager : MenuManager
     //退出子菜单
     public override void MenuQuit(GameObject Menu)
     {
-        int menuStackDepth = SelectedObjectInParentMenu.Count;
+        if (isSwitching) return;
+        menuStackDepth = SelectedObjectInParentMenu.Count;
         if (menuStackDepth > 0)       //判断当前是否在子菜单中
         {
             Menu.GetComponent<Animator>().SetTrigger("menuSlideOut");                               //当前子菜单滑出

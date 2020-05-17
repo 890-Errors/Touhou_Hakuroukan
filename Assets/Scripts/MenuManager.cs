@@ -10,6 +10,8 @@ public class MenuManager : MonoBehaviour
     public float timeDelayStart = .6f;
     public Image BackGround;
     public static MenuManager Instance;
+    protected bool isSwitching = false;
+    protected int menuStackDepth;
 
     //用List作为菜单选项堆栈
     protected List<GameObject> SelectedObjectInParentMenu = new List<GameObject>();
@@ -38,8 +40,9 @@ public class MenuManager : MonoBehaviour
     //进入子菜单
     public virtual void MenuEnter(GameObject Menu)
     {
+        if (isSwitching) return;
         BackGround.GetComponent<Animator>().SetTrigger("bgDarker");                             //背景调暗
-        int menuStackDepth = SelectedObjectInParentMenu.Count;
+        menuStackDepth = SelectedObjectInParentMenu.Count;
         SelectedObjectInParentMenu.Add(EventSystem.current.currentSelectedGameObject);          //上级菜单当前选项入栈
         menuStackDepth++;
         var HigherMenu = SelectedObjectInParentMenu[menuStackDepth - 1].transform.parent.gameObject;
@@ -52,7 +55,8 @@ public class MenuManager : MonoBehaviour
     //退出子菜单
     public virtual void MenuQuit(GameObject Menu)
     {
-        int menuStackDepth = SelectedObjectInParentMenu.Count;
+        if (isSwitching) return;
+        menuStackDepth = SelectedObjectInParentMenu.Count;
         if (menuStackDepth > 0)       //判断当前是否在子菜单中
         {
             BackGround.GetComponent<Animator>().SetTrigger("bgBrighter");                           //背景调亮
@@ -73,7 +77,9 @@ public class MenuManager : MonoBehaviour
 
     protected IEnumerator DelaySetActiveFalse(GameObject gameObject, float timeToDelay)
     {
+        isSwitching = true;
         yield return new WaitForSecondsRealtime(timeToDelay);
         gameObject.SetActive(false);
+        isSwitching = false;
     }
 }
