@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip seOK;
     public AudioClip seInvalid;
     public AudioClip sePause;
+    public AudioClip seDon;
 
     //加载场景后的默认BGM
     public AudioClip[] bgmForScene = new AudioClip[10];
@@ -80,6 +81,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case "Pause":
                 PlaySingle(sePause);
+                break;
+            case "Don":
+                PlaySingle(seDon);
                 break;
             default:
                 throw new System.Exception("Invalid name of sound effect.");

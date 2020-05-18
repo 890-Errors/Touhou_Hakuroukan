@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 840393303056267411}
   - component: {fileID: 840393303056267408}
   m_Layer: 0
-  m_Name: MenuAudioManager 1
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,6 +52,7 @@ MonoBehaviour:
   seOK: {fileID: 8300000, guid: a4894658b2e09e643bb4a921f7291de3, type: 3}
   seInvalid: {fileID: 8300000, guid: 82d87226a0045a040831ce627c6e1960, type: 3}
   sePause: {fileID: 8300000, guid: ec0a361db4d6f1a42976777478725f00, type: 3}
+  seDon: {fileID: 8300000, guid: 83c3fa9cd47938140a29f7ab7153183d, type: 3}
   bgmForScene:
   - {fileID: 0}
   - {fileID: 8300000, guid: 5d3fbac2c7567ef4faa9a7c0b8e93bc3, type: 3}

@@ -23,6 +23,7 @@ public class Mahoubakudan : MonoBehaviour
 
         //BOOM！
         particle.Play();
+        GetComponent<AudioSource>().PlayOneShot(AudioManager.instance.seDon);
 
         //再等炸完
         while (particle.IsAlive())
