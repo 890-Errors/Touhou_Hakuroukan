@@ -116,7 +116,6 @@ public class Player : MonoBehaviour, IHealthPoint
         }
 
         //使用符卡
-        //待完成
         if (Input.GetButtonDown("Spellcard"))
         {
             DeckUIController.instance.deck[DeckUIController.instance.indexSpellCardLoaded]
@@ -135,6 +134,7 @@ public class Player : MonoBehaviour, IHealthPoint
         //时间减慢
         if (Input.GetButtonDown("Change"))
         {
+            audioSourceShoot.enabled = false;
             Time.timeScale = 0.1f;
             Time.fixedDeltaTime *= Time.timeScale;
             Debug.Log("time stop.");
@@ -142,6 +142,7 @@ public class Player : MonoBehaviour, IHealthPoint
         }
         if (Input.GetButtonUp("Change"))
         {
+            audioSourceShoot.enabled = true;
             Time.timeScale = 1;
             Time.fixedDeltaTime = 0.02f;
             DeckUIController.instance.ToggleDeck();
@@ -184,7 +185,10 @@ public class Player : MonoBehaviour, IHealthPoint
         grazer.enabled = false;
         emitter.enabled = false;
         //倒地
-        gameObject.transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
+        transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
+        GetComponent<SpriteRenderer>().color = Color.gray;
+        audioSourceShoot.enabled = false;
+        PauseMenuManager.Instance.TogglePauseMenu();
         this.enabled = false;
     }
 }

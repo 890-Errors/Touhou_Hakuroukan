@@ -72,11 +72,13 @@ public class Seija : MonoBehaviour, IHealthPoint
     void Die()
     {
         transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
+        GetComponent<SpriteRenderer>().color = Color.gray;
         GetComponent<DanmakuCollider>().OnDanmakuCollision -= OnDanmakuCollision;
         transform.GetChild(0).GetComponent<DanmakuEmitter>().enabled = false;
         audioSource.PlayOneShot(enemyDead);
         FindObjectOfType<Player>().visualField = 0f;    //别打了，爷躺了
         GetComponent<SeijaAI>().enabled = false;
+        //PauseMenuManager.Instance.TogglePauseMenu();
         this.enabled = false;
     }
 }

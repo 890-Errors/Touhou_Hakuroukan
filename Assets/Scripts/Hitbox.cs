@@ -34,19 +34,7 @@ public class Hitbox : MonoBehaviour, IHitbox
                 //子弹消失
                 danmakuCollisions[i].Danmaku.Destroy();
                 //掉残
-                if (ParentController.HP > 0)
-                {
-                    Miss();
-                }
-                //满身疮痍！
-                if (ParentController.HP <= 0)
-                {
-                    //关闭擦弹器、判定点的渲染器、发射器
-                    GetComponent<SpriteRenderer>().enabled = false;
-                    DanmakuCollider.OnDanmakuCollision -= OnDanmakuCollision;
-                    (ParentController as Player).Die();
-                    this.enabled = false;
-                }
+                Miss();
                 break;//自机一帧只处理一个弹幕碰撞
             }
         }
@@ -69,6 +57,17 @@ public class Hitbox : MonoBehaviour, IHitbox
         LifeUIController.SetLifeLevel(ParentController.HP);
         (ParentController as MonoBehaviour).GetComponent<Animator>().SetTrigger("miss");
         CameraShaker.Instance.ShakeOnce(10f, 4f, .2f, .2f);
+
+        //满身疮痍！
+        if (ParentController.HP <= 0)
+        {
+            //关闭擦弹器、判定点的渲染器、发射器
+            GetComponent<SpriteRenderer>().enabled = false;
+            DanmakuCollider.OnDanmakuCollision -= OnDanmakuCollision;
+            (ParentController as Player).Die();
+            this.enabled = false;
+        } 
+
         StartCoroutine("InvincibleMiss");   //中弹无敌一段时间
     }
 }
