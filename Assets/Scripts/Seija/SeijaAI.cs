@@ -11,11 +11,14 @@ public class SeijaAI : MonoBehaviour
     public float nextWaypointDistance = 3f;
     public float updatePathTime = 0.5f;
     public float stopDistance = 3f;
+    public GameObject Mahoubakudan;
+    public Seija seija;
     private RaycastHit2D[] hits;
 
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
+    bool isPathing = true;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -24,6 +27,7 @@ public class SeijaAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        seija = GetComponent<Seija>();
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         cd = GetComponent<Collider2D>();
@@ -31,11 +35,12 @@ public class SeijaAI : MonoBehaviour
         seeker.StartPath(rb.position, target.position, OnPathComplete);
         //每隔段时间更新一下寻路路径
         InvokeRepeating("UpdatePath", 0f, updatePathTime);
+        StartCoroutine("PlantBomb");
     }
 
     void UpdatePath()
     {
-        if (path?.IsDone()??false)
+        if (path?.IsDone() ?? false)
             seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
@@ -48,7 +53,6 @@ public class SeijaAI : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (path == null) return;
@@ -73,12 +77,33 @@ public class SeijaAI : MonoBehaviour
             currentWaypoint++;
         }
 
-        if (Vector2.Distance(rb.position, (Vector2)target.position) >= stopDistance
-            || Physics2D.RaycastAll(rb.position, (Vector2)target.position)[1].collider is TilemapCollider2D)
+        if ((Vector2.Distance(rb.position, (Vector2)target.position) >= stopDistance
+            || Physics2D.RaycastAll(rb.position, (Vector2)target.position)[1].collider is TilemapCollider2D
+            )
+            && isPathing)
         {
             rb.AddForce(force);
         }
 
         rb.GetComponent<SpriteRenderer>().flipX = target.position.x < transform.position.x ? true : false;
+    }
+
+    IEnumerator PlantBomb()
+    {
+        while (this.enabled)
+        {
+            yield return new WaitForSeconds(3.0f);
+            if (rb.velocity.magnitude >= 0.001f
+                && Vector2.Distance(transform.position, target.position) <= 15)
+            {
+                isPathing = false;
+                seija.emitter.enabled = false;
+                yield return new WaitForSeconds(.5f);
+                if (!this.enabled) break;
+                Instantiate(Mahoubakudan, transform);
+                seija.emitter.enabled = true;
+                isPathing = true;
+            }
+        }
     }
 }
