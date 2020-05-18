@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using EZCameraShake;
 
 public class Meishinjikouzan : MonoBehaviour, ISpellCard
@@ -25,9 +23,10 @@ public class Meishinjikouzan : MonoBehaviour, ISpellCard
     public void SpellCardRelease()
     {
         var grazer = Player.grazer;
-        if (grazer.grazeLevel <= Cost)
+        if (grazer.grazeLevel < Cost)
         {
             CameraShaker.Instance.ShakeOnce(10f, 4f, .2f, .2f);
+            AudioManager.instance.PlaySingle("Invalid");
         }
         else
         {

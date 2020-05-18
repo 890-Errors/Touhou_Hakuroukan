@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using EZCameraShake;
 
 public class Ibukihyou : MonoBehaviour, ISpellCard
@@ -27,15 +25,16 @@ public class Ibukihyou : MonoBehaviour, ISpellCard
     public void SpellCardRelease()
     {
         Grazer grazer = Player.grazer;
-        if (grazer.grazeLevel >= Cost)
+        if (grazer.grazeLevel < Cost)
+        {
+            CameraShaker.Instance.ShakeOnce(10f, 4f, .2f, .2f);     //擦弹等级不足
+            AudioManager.instance.PlaySingle("Invalid");
+        }
+        else
         {
             grazer.grazeLevel -= Cost;
             grazer.GrazeLevelUIController.SetGrazeLevel(grazer.grazeLevel);
             LifeUIController.SetLifeLevel(++Player.HP);
-        }
-        else
-        {
-            CameraShaker.Instance.ShakeOnce(10f, 4f, .2f, .2f);     //擦弹等级不足
         }
     }
 }
