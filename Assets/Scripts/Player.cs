@@ -173,9 +173,18 @@ public class Player : MonoBehaviour, IHealthPoint
         isRushCooling = false;
     }
 
-    void Move(Vector2 direction, float speed)
+    private void Move(Vector2 direction, float speed)
     {
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime *
             ((direction.x != 0 && direction.y != 0) ? 0.707f : 1.0f));
+    }
+
+    public void Die()
+    {
+        grazer.enabled = false;
+        emitter.enabled = false;
+        //倒地
+        gameObject.transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
+        this.enabled = false;
     }
 }

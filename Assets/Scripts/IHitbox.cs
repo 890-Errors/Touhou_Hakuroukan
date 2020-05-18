@@ -8,5 +8,6 @@ public interface IHitbox
     IHealthPoint ParentController { get; set; }
 
     void OnDanmakuCollision(DanmakuCollisionList danmakuCollisions);
+    void Miss();
 
 }

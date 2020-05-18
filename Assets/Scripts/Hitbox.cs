@@ -12,6 +12,8 @@ public class Hitbox : MonoBehaviour, IHitbox
     public float invincibleTime = 1.5f;
     public LifeUIController LifeUIController;
 
+    private bool isInvincible = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,33 +36,39 @@ public class Hitbox : MonoBehaviour, IHitbox
                 //掉残
                 if (ParentController.HP > 0)
                 {
-                    ParentController.HP -= 1;
-                    LifeUIController.SetLifeLevel(ParentController.HP);
-                    (ParentController as MonoBehaviour).GetComponent<Animator>().SetTrigger("miss");
-                    CameraShaker.Instance.ShakeOnce(10f, 4f, .2f, .2f);
+                    Miss();
                 }
                 //满身疮痍！
                 if (ParentController.HP <= 0)
                 {
                     //关闭擦弹器、判定点的渲染器、发射器
                     GetComponent<SpriteRenderer>().enabled = false;
-                    (ParentController as Player).grazer.enabled = false;
-                    (ParentController as Player).emitter.enabled = false;
-                    //倒地
-                    (ParentController as Player).gameObject.transform.RotateAround(gameObject.transform.position + Vector3.down, Vector3.back, 90);
-                    DanmakuCollider.OnDanmakuCollision -= OnDanmakuCollision;                    
-                    (ParentController as Player).enabled = false;
+                    DanmakuCollider.OnDanmakuCollision -= OnDanmakuCollision;
+                    (ParentController as Player).Die();
+                    this.enabled = false;
                 }
-                StartCoroutine("InvincibleMiss");   //中弹无敌一段时间
                 break;//自机一帧只处理一个弹幕碰撞
             }
         }
     }
+
     IEnumerator InvincibleMiss()    //无敌一段时间
     {
         Collider2D.enabled = false;
+        isInvincible = true;
         (ParentController as Player).audioSourceDead.PlayOneShot((ParentController as Player).sePlayerDead);
         yield return new WaitForSeconds(invincibleTime);
         Collider2D.enabled = true;
+        isInvincible = false;
+    }
+
+    public void Miss()
+    {
+        if (isInvincible) return;
+        ParentController.HP--;
+        LifeUIController.SetLifeLevel(ParentController.HP);
+        (ParentController as MonoBehaviour).GetComponent<Animator>().SetTrigger("miss");
+        CameraShaker.Instance.ShakeOnce(10f, 4f, .2f, .2f);
+        StartCoroutine("InvincibleMiss");   //中弹无敌一段时间
     }
 }
