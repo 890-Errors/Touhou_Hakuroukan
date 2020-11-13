@@ -4,7 +4,7 @@ using UnityEngine;
 public class PixelSnapping : MonoBehaviour
 {
     public TextMeshProUGUI textPixelSnapping;
-    private bool isPixelSnapping = false;
+    private bool isPixelSnapping = false;   
 
     // Start is called before the first frame update
     void Awake()

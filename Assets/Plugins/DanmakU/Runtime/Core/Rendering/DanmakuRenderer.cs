@@ -155,6 +155,7 @@ namespace DanmakU
             args[1] = (uint)batchSize;
             argsBuffer.SetData(args);
 
+#if UNITY_STANDALONE
             Graphics.DrawMeshInstancedIndirect(mesh, 0, renderMaterial,
               bounds: new Bounds(Vector3.zero, Vector3.one * 1000f),
               bufferWithArgs: argsBuffer,
@@ -164,15 +165,18 @@ namespace DanmakU
               receiveShadows: false,
               layer: layer,
               camera: null);
+#endif
 
-            //Matrix4x4[] matrices = matrixList.ToArray();
+#if UNITY_WEBGL
+            Matrix4x4[] matrices = matrixList.ToArray();
 
-            //Graphics.DrawMeshInstanced(mesh, 0, renderMaterial,
-            //    matrices,
-            //    matrices.Length,
-            //    properties: propertyBlock,
-            //    castShadows: ShadowCastingMode.Off,
-            //    receiveShadows: false);
+            Graphics.DrawMeshInstanced(mesh, 0, renderMaterial,
+                matrices,
+                matrices.Length,
+                properties: propertyBlock,
+                castShadows: ShadowCastingMode.Off,
+                receiveShadows: false);
+#endif
         }
 
     }

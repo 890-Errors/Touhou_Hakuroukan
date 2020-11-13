@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class MenuManager : MonoBehaviour
 {
-    public float timeDelayStart = .6f;
+    public float timeDelayStart = 0.0f;
     public Image BackGround;
     public static MenuManager Instance;
     protected bool isSwitching = false;
@@ -72,7 +72,7 @@ public class MenuManager : MonoBehaviour
     protected IEnumerator DelayToNextScene()
     {
         yield return new WaitForSecondsRealtime(timeDelayStart);
-        SceneManager.LoadScene(GameManager.instance.buildIndex + 1);
+        SceneManager.LoadSceneAsync(GameManager.instance.buildIndex + 1, mode: LoadSceneMode.Single);
     }
 
     protected IEnumerator DelaySetActiveFalse(GameObject gameObject, float timeToDelay)
