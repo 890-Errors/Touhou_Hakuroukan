@@ -2,6 +2,6 @@
 
 A developing touhou doujin game.
 
-I will get it done before June 2020.
+I will (not) get it done before June 2020.
 
-（鸽，我疯狂地鸽）
+Now you can play [WebGL version](https://hakurei.red/lab/) online.
