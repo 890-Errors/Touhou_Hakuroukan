@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+    "com.kyrylokuzyk.primetween": "https://github.com/KyryloKuzyk/PrimeTween.git?path=Assets/PrimeTween",
     "com.unity.2d.pixel-perfect": "4.0.1",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
