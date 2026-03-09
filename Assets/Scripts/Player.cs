@@ -65,8 +65,6 @@ public class Player : MonoBehaviour, IHealthPoint
     {
 
         //处理移动相关的操作
-        moveDirection.x = (int)Input.GetAxisRaw("Horizontal");
-        moveDirection.y = (int)Input.GetAxisRaw("Vertical");
         if (moveDirection != Vector2.zero) lastNonzeroMoveDirection = moveDirection;
         if (Time.timeScale != 1)        //时间操作下禁止移动
         {
